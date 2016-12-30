@@ -1,0 +1,64 @@
+fdisk -h
+--help
+man find
+help  ->内部帮助命令
+man  ->外部帮助命令
+
+帮助命令（各种命令区别）
+ 
+最常用的帮助命令
+ 
+help --help
+help cd 查看内置命令的使用
+info
+man
+ 
+help cd 查看内置命令的使用
+ 
+获得帮助的途径：
+ 
+man
+        --help
+
+ 
+--help 和 help
+ 
+两者都可用来获得帮助信息，但有明显差别
+help：显示bash shell 内部命令的简单信息。使用help不带任何参数将显示bash shell所有内置的命令。
+bash shell内置命令包括：alias，cd，echo，exit，help，history，pwd，set。。。。。。
+--help：显示的是一个简略的命令帮助（可以查到大部分命令，但不是所有命令）。
+ 
+[root@teacher ~]# passwd --help             查看passwd的使用方法
+Usage: passwd [OPTION...] <accountName>
+  -k, --keep-tokens       keep non-expired authentication tokens
+  -d, --delete            delete the password for the named account (root only)
+  -l, --lock              lock the password for the named account (root only)
+  -u, --unlock            unlock the password for the named account (root only)
+  -e, --expire            expire the password for the named account (root only)
+  -f, --force             force operation
+ 
+ 
+help --help所提供的信息常太过于简略，有时不能满足用户的需求，所以必须用到man（manual指南的意思）
+ 
+man
+ 
+man passwd 默认情况下是查命令
+      【用法：man 待查询命令】man page放在/usr/share/man/man1目录下
+man 5 在线获得文档资料
+      【用法：man 5  待查询命令】man page放在/usr/share/man/man5目录下
+[root@teacher doc]# man 1 passwd  查看passwd命令的说明
+[root@teacher doc]# man 5 passwd  查看/etc/passwd文件的说明，详细介绍
+ 
+[root@teacher doc]# man 6 passwd
+No entry for passwd in section 6 of the manual
+[root@teacher doc]# man 7 passwd
+No entry for passwd in section 7 of the manual
+[root@teacher doc]# man 8 passwd
+No entry for passwd in section 8 of the manual
+[root@teacher doc]# man 9 passwd
+No entry for passwd in section 9 of the manual
+[root@teacher doc]
+ 
+info提供的信息通常要比man所显示的信息更加完整，也更新一些。
+info  passwd 查看info信息
+info  mkdir
