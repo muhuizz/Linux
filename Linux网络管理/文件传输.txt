@@ -1,0 +1,14 @@
+1、通过Xshell工具传输文件
+	首先Linux需要安装rz，sz命令
+		安装命令： yum install lrzsz -y
+	接收和发送都是相对于Linux而言的
+	rz 是接收文件，运行命令rz，Xshell会弹出文件选择对话框，选好文件之后关闭对话框，文件自动上传到Linux当前目录
+	sz 是发送文件，运行命令sz file，将Linux上的文件发送到Windows上，不用开启ftp服务。
+	
+2、通过Xshell工具传输文件
+	最简单的当时就是直接将文件拖到Xshell中，就可以完成上传
+	
+3、Winscp传输文件
+
+4、
+	
