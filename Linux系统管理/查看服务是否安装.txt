@@ -1,0 +1,9 @@
+查看服务是否安装：
+	chkconfig --list | grep 文件名
+	service 服务名 status
+	rpm -q 软件包名
+	
+关闭和启动防火墙：
+	service iptables stop
+	service iptables start
+	
