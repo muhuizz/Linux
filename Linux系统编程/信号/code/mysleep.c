@@ -24,9 +24,9 @@ size_t mysleep(size_t second)
 	sigaction(SIGALRM, &act, &oact);
 	alarm(second);
 	pause();
-	int ret = alarm(0);
+	int ret = alarm(0);	// 防止异常唤醒
 
-	sigaction(SIGALRM, &oact, NULL);
+	sigaction(SIGALRM, &oact, NULL);	// 恢复默认初始值，防止对其他信号产生影响
 	return ret;
 }
 int main()
