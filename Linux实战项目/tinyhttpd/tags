@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+FATAL	httpd.h	21;"	d
+GetLine	httpd.c	/^static int GetLine(int sock, char *buf, int sz)$/;"	f	file:
+NORMAL	httpd.h	19;"	d
+SIZE	cgi-bin/cgi_math.c	5;"	d	file:
+SIZE	httpd.h	23;"	d
+WARNING	httpd.h	20;"	d
+_HTTPD_H_	httpd.h	2;"	d
+cgi_math	cgi-bin/cgi_math.c	/^void cgi_math(char *content_data)$/;"	f
+clear_header	httpd.c	/^void clear_header(int sock)$/;"	f
+echo_errno	httpd.c	/^void echo_errno()$/;"	f
+echo_www	httpd.c	/^int echo_www(int sock,const char*  path, int _s)$/;"	f
+exec_cgi	httpd.c	/^int exec_cgi(int sock, const char* path, const char* method, const char* query_string)$/;"	f
+fun_client	main.c	/^static void* fun_client(void * arg)$/;"	f	file:
+handle_client	httpd.c	/^int handle_client(int sock)$/;"	f
+main	cgi-bin/cgi_math.c	/^int main()$/;"	f
+main	main.c	/^int main(int argc, char *argv[])$/;"	f
+print_log	httpd.c	/^void print_log(const char * msg, int type)$/;"	f
+startup	main.c	/^static int startup(const char *_ip, int _port)$/;"	f	file:
+usage	main.c	/^static void usage(const char *msg)$/;"	f	file:

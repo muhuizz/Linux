@@ -1,0 +1,55 @@
+#!/bin/bash
+
+PATH_ROOT=$(pwd)
+INCLUDE=$PATH_ROOT
+SRC=$(ls *.c | tr '\n' ' ')
+OBJ=$(echo ${SRC} | sed  's/\.c/\.o/g' )
+SERVER_NAME=httpd
+cc=gcc
+LIB=-lpthread
+
+#cgi
+CGI_PATH=${PATH_ROOT}/cgi-bin
+MATH_SRC=$(ls ${CGI_PATH} | grep "math" | grep -E '.c$')
+MATH_BIN=cgi_math
+
+cat << EOF > ${CGI_PATH}/Makefile
+${MATH_BIN}:${MATH_SRC}
+	${cc} -o \$@ \$^
+.PHONY:clean
+clean:
+	rm -f ${MATH_BIN}
+EOF
+
+# http
+cat << EOF > Makefile
+.PHONY:all
+all:${SERVER_NAME} cgi
+
+${SERVER_NAME}:${OBJ}
+	${cc} -o \$@ \$^ ${LIB}
+%.o:%.c
+	${cc} -c \$<
+	
+.PHONY:cgi
+cgi:
+	cd cgi; make; cd -
+
+.PHONT:output
+output:all
+	mkdir output
+	cp ${SERVER_NAME} output/
+	cp -rf log output/
+	cp -rf conf	output/
+	cp -rf wwwRoot	output/
+
+	mkdir -p output/wwwRoot/cgi
+
+	cp ${CGI_PATH}/${MATH_BIN}	output/wwwRoot/cgi/
+
+.PHONY:clean
+clean:
+	rm -rf ${SERVER_NAME} *.o output
+	cd ${CGI_PATH};make clean; cd -
+EOF
+
