@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
 
 	int listen_sock = startup(argv[1],atoi( argv[2]));
 
+	daemon(1, 0);
 	// printf("listen_sock is ready!\n");
 	while(1)
 	{

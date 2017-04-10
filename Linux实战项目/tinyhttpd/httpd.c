@@ -11,9 +11,61 @@ void print_log(const char * msg, int type)
 //	printf("%s\n", msg);
 }
 
-void echo_errno()
+void errno_html(int sock, const char* path)
 {
+	char buf[SIZE];
+	memset(buf, 0, sizeof(buf));
+	struct stat st;
+	if(stat(path, &st) < 0)
+	{
+		sprintf(buf, "%s is not found", path);
+		print_log(buf, WARNING);
+		return;
+	}
+	int fd = open(path, O_RDONLY);
+	sendfile(sock, fd, 0, st.st_size); 
+	close(fd);
+}
 
+void echo_errno(int sock, int status)
+{
+	char buf[1024];
+	char path[1024];
+	memset(buf, 0, sizeof(buf));
+	memset(path, 0, sizeof(path));
+	switch(status)
+	{
+	case 400:
+		sprintf(buf, "HTTP/1.0 400 Bad Request\r\n\r\n");
+		send(sock, buf, strlen(buf), 0);
+		sprintf(path, "wwwRoot/errno_400.html");
+		errno_html(sock, path);
+		break;
+	case 403:
+		sprintf(buf, "HTTP/1.0 403 Forbidden\r\n\r\n");
+		send(sock, buf, strlen(buf), 0);
+		sprintf(path, "wwwRoot/errno_403.html");
+		errno_html(sock, path);
+		break;
+	case 404:
+		sprintf(buf, "HTTP/1.0 404 Not Found\r\n\r\n");
+		send(sock, buf, strlen(buf), 0);
+		sprintf(path, "wwwRoot/errno_404.html");
+		errno_html(sock, path);
+		break;
+	case 405:
+		sprintf(buf, "HTTP/1.0 405 Unallowed Method\r\n\r\n");
+		send(sock, buf, strlen(buf), 0);
+		sprintf(path, "wwwRoot/errno_405.html");
+		errno_html(sock, path);
+		break;
+	case 503:
+		sprintf(buf, "HTTP/1.0 503 Server Unavailable\r\n\r\n");
+		send(sock, buf, strlen(buf), 0);
+		sprintf(path, "wwwRoot/errno_503.html");
+		errno_html(sock, path);
+		break;
+	}
 }
 
 static int GetLine(int sock, char *buf, int sz)
@@ -57,7 +109,7 @@ int echo_www(int sock,const char*  path, int _s)
 	{
 		ret = 8;
 		print_log("open file faild", FATAL);
-		echo_errno();
+		echo_errno(sock, 503);
 	}
 	char buf[1024];
 	strcpy(buf, "HTTP/1.0 200 ok\r\n");
@@ -67,7 +119,7 @@ int echo_www(int sock,const char*  path, int _s)
 
 	if(sendfile(sock, fd, 0, _s) < 0)
 	{
-		echo_errno();
+		echo_errno(sock, 503);
 		ret = 9;
 	}
 	close(fd);
@@ -97,7 +149,7 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 
 		if(content_len <= 0)
 		{
-			echo_errno();
+			echo_errno(sock, 400);
 			ret = 10;
 		}
 	}
@@ -111,7 +163,7 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 	pid_t id = fork();
 	if(id < 0)
 	{
-		echo_errno();
+		echo_errno(sock, 503);
 		perror("fork");
 		ret = 11;
 	}
@@ -144,8 +196,6 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 	{
 		close(input[0]);
 		close(output[1]);
-	//	dup2();
-	//	dup2();
 		if(strcasecmp(method, "POST") == 0)
 		{
 			int ch = 0;
@@ -188,8 +238,6 @@ int handle_client(int sock)
 	memset(buf, 0, sizeof(buf));
 	GetLine(sock, buf, sizeof(buf));
 
-	printf("Recv msg is %s",  buf);
-	
 	// GET /AA/BB/CC?a=x&b=y HTTP/1.0
 	// get method
 	memset(method, 0, sizeof(method));
@@ -203,7 +251,7 @@ int handle_client(int sock)
 	if((strcasecmp(method, "GET")!= 0) && (strcasecmp(method, "POST")!= 0))
 	{
 		print_log("don't match method",FATAL );
-		echo_errno();
+		echo_errno(sock, 405);
 		ret = 6;
 		goto end;
 	}
@@ -241,7 +289,6 @@ int handle_client(int sock)
 			cgi=1;
 		}
 	}
-	// printf("buf# [%s]\n method# [%s]\n query# [%s]\n", buf, method, query_string);
 
 	// GET or POST
 	// cgi -> ok
@@ -256,7 +303,7 @@ int handle_client(int sock)
 	struct stat st;
 	if(stat(path, &st) < 0)
 	{
-		// echo_errno(404)
+		echo_errno(sock, 404);
 		ret = 7;
 		print_log("path is not exist", FATAL);
 		goto end;
@@ -272,7 +319,6 @@ int handle_client(int sock)
 			cgi =1;
 		}
 	}
-	printf("Debug# path is %s\n", path);
 
 	// cgi or normal
 	if(cgi == 1)
