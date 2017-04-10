@@ -2,13 +2,32 @@
 
 void print_log(const char * msg, int type)
 {
-	openlog();
-//	time_t t;
-//	struct tm* timeinfo;
-//	time(&t);
-//	timeinfo = localtime(&t);
-//	printf("%s\n", asctime(timeinfo));
-//	printf("%s\n", msg);
+	umask(0);
+	char *Level[]={
+			"NORMAL",
+			"WARNING",
+			"FATAL"
+		};
+	time_t t;
+	struct tm* timeinfo;
+	time(&t);
+	timeinfo = localtime(&t);
+	char buf[SIZE];
+
+	int fd = open("log/httpd.log",O_CREAT | O_APPEND |O_WRONLY , 0644);
+
+	memset(buf, 0, sizeof(buf));
+	sprintf(buf, "%s", asctime(timeinfo));
+	write(fd, buf, strlen(buf));
+
+	memset(buf, 0, sizeof(buf));
+	sprintf(buf, "%s  %s\n", msg, Level[type]);
+	write(fd, buf, strlen(buf));
+	
+	memset(buf, 0, sizeof(buf));
+	sprintf(buf, "--------------------------------------------\n");
+	write(fd, buf, strlen(buf));
+	close(fd);
 }
 
 void errno_html(int sock, const char* path)
