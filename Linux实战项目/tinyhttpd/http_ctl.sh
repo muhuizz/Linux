@@ -1,11 +1,42 @@
 #!/bin/bash
 
-
+Path=$(pwd)
+BIN=${Path}/httpd
+PID=${Path}/httpd.pid
+CONF=${Path}/conf/httpd.conf
 proc=$( basename $0 )
+
 function Usage(){
 	printf "%s [start(-s) | stop(-t) | restart(-rt)]\n" "$proc"
 }
 
+function fun_start(){
+	[[ -f $PID ]] && {
+		printf "httpd is running, pid is $(cat $PID)\n"
+		return 
+	}
+	_ip=$(grep -E "^IP:" $CONF | awk -F: '{print $2}')
+	_port=$(grep -E "^PORT:" $CONF | awk -F: '{print $2}')
+	${BIN} ${_ip} ${_port}
+	pidof $(basename $BIN) > $PID
+	printf "httpd start... pid is : $(cat ${PID}) \n"
+}
+
+function fun_stop(){
+	[[ ! -f ${PID} ]] &&{
+		printf "httpd is not start\n"
+		return
+	}
+	pid=$(cat ${PID})
+	kill -9 ${pid}
+	[[ $? -ne 0 ]] && {
+		printf "stop faild\n"
+		return
+	}
+	 
+	rm -f ${PID}
+	printf "stop done...\n"
+}
 
 [[ $# -ne 1 ]] && {
 	Usage
@@ -24,7 +55,8 @@ case $1 in
 		fun_start
 		;;
 	* )
-		echo "default"
+		Usage
+		exit 2
 		;;
 esac
 

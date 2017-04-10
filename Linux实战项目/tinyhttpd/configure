@@ -33,7 +33,7 @@ ${SERVER_NAME}:${OBJ}
 	
 .PHONY:cgi
 cgi:
-	cd cgi; make; cd -
+	cd cgi-bin; make; cd -
 
 .PHONT:output
 output:all
@@ -42,10 +42,9 @@ output:all
 	cp -rf log output/
 	cp -rf conf	output/
 	cp -rf wwwRoot	output/
-
 	mkdir -p output/wwwRoot/cgi
-
 	cp ${CGI_PATH}/${MATH_BIN}	output/wwwRoot/cgi/
+	cp http_ctl.sh output/http_ctl
 
 .PHONY:clean
 clean:
