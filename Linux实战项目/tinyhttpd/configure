@@ -21,6 +21,23 @@ clean:
 	rm -f ${MATH_BIN}
 EOF
 
+# sql
+SQL_LIB=$(pwd)/lib
+SQL_PATH=$(pwd)/mysql_cgi
+SQL_BIN=${SQL_PATH}/cgi_insert
+SQL_API=${SQL_PATH}/mysql_api.cpp
+#INCLUDE=-I
+#$(export LD_LIBRARY_PATH=${SQL_LIB}/lib)
+#
+#cat <<EOF > ${SQL_PATH}/Makefile
+#
+#${SQL_BIN}:cgi_insert.cpp ${SQL_API}
+#	g++ -o \$@ \$^ ${INCLUDE} ${SQL_LIB} ${LIB}
+#
+#
+#EOF
+#
+
 # http
 cat << EOF > Makefile
 .PHONY:all
@@ -42,9 +59,12 @@ output:all
 	cp -rf log output/
 	cp -rf conf	output/
 	cp -rf wwwRoot	output/
-	mkdir -p output/wwwRoot/cgi
+	mkdir -p output/wwwRoot/cgi/sql
 	cp ${CGI_PATH}/${MATH_BIN}	output/wwwRoot/cgi/
 	cp http_ctl.sh output/http_ctl
+	echo ${CGI_PATH}
+	cp -rf ${SQL_LIB} output/
+	cp ${SQL_BIN} output/wwwRoot/cgi/sql/
 
 .PHONY:clean
 clean:
