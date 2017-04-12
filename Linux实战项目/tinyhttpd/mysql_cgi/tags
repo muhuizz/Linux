@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+INCLUDE_PATH	Makefile	/^INCLUDE_PATH=-I$(ROOT_PATH)\/..\/lib\/include$/;"	m
+LIB	Makefile	/^LIB=-lmysqlclient$/;"	m
+LIB_PATH	Makefile	/^LIB_PATH=-L$(ROOT_PATH)\/..\/lib\/lib$/;"	m
+ROOT_PATH	Makefile	/^ROOT_PATH=$(shell pwd)$/;"	m
+cc	Makefile	/^cc=g++$/;"	m
+conn	mysql_api.h	/^	MYSQL* conn;$/;"	m	class:sql_cgi
+main	mysql_api.cpp	/^int main()$/;"	f
+sql_cgi	mysql_api.cpp	/^sql_cgi::sql_cgi()$/;"	f	class:sql_cgi
+sql_cgi	mysql_api.h	/^class sql_cgi$/;"	c
+sql_connect_cgi	mysql_api.cpp	/^int sql_cgi::sql_connect_cgi()$/;"	f	class:sql_cgi
+sql_delete_cgi	mysql_api.cpp	/^int sql_cgi::sql_delete_cgi()$/;"	f	class:sql_cgi
+sql_insert_cgi	mysql_api.cpp	/^int sql_cgi::sql_insert_cgi(string info)$/;"	f	class:sql_cgi
+sql_select_cgi	mysql_api.cpp	/^int sql_cgi::sql_select_cgi()$/;"	f	class:sql_cgi
+sql_update_cgi	mysql_api.cpp	/^int sql_cgi::sql_update_cgi()$/;"	f	class:sql_cgi
+~sql_cgi	mysql_api.cpp	/^sql_cgi::~sql_cgi()$/;"	f	class:sql_cgi
