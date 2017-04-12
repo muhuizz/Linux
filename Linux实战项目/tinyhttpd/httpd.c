@@ -324,6 +324,9 @@ int handle_client(int sock)
 	{
 		echo_errno(sock, 404);
 		ret = 7;
+		char err[1024];
+		sprintf(err, "path is %s", path);
+		print_log(err, FATAL);
 		print_log("path is not exist", FATAL);
 		goto end;
 	}
