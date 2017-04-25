@@ -8,39 +8,42 @@ WINDOW=$(ROOT_PATH)/window
 LIB_PATH=$(ROOT_PATH)/lib
 DATA_POOL_PATH=$(ROOT_PATH)/data_pool
 CC=g++
-INCLUDE=-I$(SERVER_PATH) -I$(DATA_POOL_PATH) -I$(LOG_PATH)
+INCLUDE=-I$(SERVER_PATH) -I$(DATA_POOL_PATH) -I$(LOG_PATH) -I$(ROOT_PATH)/lib/include -I$(COMM_PATH)
 lib=-lpthread
+COMP=-static
 
 CLIENT_BIN=udpclient
 SERVER_BIN=udpserver
 
-CLIENT_SRC=$(shell ls  $(CLIENT_PATH) $(LOG_PATH)| egrep  '*.cpp')  
+CLIENT_SRC=$(shell ls  $(CLIENT_PATH) $(LOG_PATH) $(COMM_PATH)| egrep  '*.cpp')  
 SERVER_SRC=$(shell ls  $(SERVER_PATH) $(DATA_POOL_PATH) $(LOG_PATH) | egrep "*.cpp")
 
 CLIENT_OBJ=$(shell echo $(CLIENT_SRC) | sed 's/.cpp/.o/g')
 SERVER_OBJ=$(shell echo $(SERVER_SRC) | sed 's/.cpp/.o/g')
 
 .PHONY:all
-all:$(CLIENT_BIN) $(SERVER_BIN)
+all:$(SERVER_BIN) $(CLIENT_BIN)
+
+$(SERVER_BIN):$(SERVER_OBJ)
+	@echo "Linking [$<] to [$@]..."
+	$(CC) -o $@ $^ $(lib) $(COMP)
+	@echo "Linking Server done..."
+%.o:$(SERVER_PATH)/%.cpp
+	$(CC) -c $< $(INCLUDE) 
 
 $(CLIENT_BIN):$(CLIENT_OBJ)
 	@echo "Linking [$<] to [$@]..."
-	$(CC) -o $@ $^ $(INCLUDE)
+	$(CC) -o $@ $^ $(COMP) $(lib)
 	@echo "Linking CLIENT done..."
-	
 %.o:$(CLIENT_PATH)/%.cpp
-	$(CC) -c $< $(INCLUDE)
-$(SERVER_BIN):$(SERVER_OBJ)
-	@echo "Linking [$<] to [$@]..."
-	$(CC) -o $@ $^ $(lib)
-	@echo "Linking Server done..."
-%.o:$(SERVER_PATH)/%.cpp
-	$(CC) -c $< $(INCLUDE)
+	$(CC) -c $< $(INCLUDE) -ljsoncpp -L$(ROOT_PATH)/lib/lib 
 
 %.o:$(DATA_POOL_PATH)/%.cpp
 	$(CC) -c $< 
 %.o:$(LOG_PATH)/%.cpp
 	$(CC) -c $< 
+%.o:$(COMM_PATH)/%.cpp
+	$(CC) -c $< $ -I$(ROOT_PATH)/lib/include  
 
 .PHONY:clean
 clean:
