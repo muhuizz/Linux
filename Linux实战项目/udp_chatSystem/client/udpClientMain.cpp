@@ -1,11 +1,11 @@
-#include "udpServer.h"
+#include "udpClient.h"
 
-using namespace  std;
+using namespace std;
 
 
-void Usage(const char* Server)
+void Usage(const char* server)
 {
-	cout<<"Usage: "<< Server <<"[local_ip] [local_port]"<<endl;
+	cout<<"Usage: "<< server <<"[server_ip] [server_port]"<<endl;
 }
 
 int main(int argc, char *argv[])
@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
 	string _ip = argv[1];
 	int _port = atoi(argv[2]);
-	Server svr(_ip, _port);
-	svr.InitServer();
+	Client cli(_ip, _port);
+	cli.InitClient();
 
 
 	return 0;

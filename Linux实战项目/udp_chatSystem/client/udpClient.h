@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <map>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -11,7 +10,6 @@
 #include <unistd.h>
 #include <cstdlib>
 #include "log.h"
-#include "dataPool.h"
 #define SIZE 1024
 
 class Client
@@ -19,8 +17,8 @@ class Client
 	public:
 		Client(const std::string& ip, const int& post);
 		void InitClient();
-		int RecvData(string& recv_str);
-		int SendData(const std::string& send_str, const struct sockaddr_in dest);
+		int RecvData(std::string& recv_str);
+		int SendData(const std::string& send_str);
 		~Client();
 	private:
 		Client(const Client& svr);

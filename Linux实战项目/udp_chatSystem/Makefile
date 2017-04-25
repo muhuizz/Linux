@@ -14,7 +14,7 @@ lib=-lpthread
 CLIENT_BIN=udpclient
 SERVER_BIN=udpserver
 
-CLIENT_SRC=$(shell ls  $(CLIENT_PATH) | egrep  '*.cpp')  
+CLIENT_SRC=$(shell ls  $(CLIENT_PATH) $(LOG_PATH)| egrep  '*.cpp')  
 SERVER_SRC=$(shell ls  $(SERVER_PATH) $(DATA_POOL_PATH) $(LOG_PATH) | egrep "*.cpp")
 
 CLIENT_OBJ=$(shell echo $(CLIENT_SRC) | sed 's/.cpp/.o/g')
@@ -25,11 +25,11 @@ all:$(CLIENT_BIN) $(SERVER_BIN)
 
 $(CLIENT_BIN):$(CLIENT_OBJ)
 	@echo "Linking [$<] to [$@]..."
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ $(INCLUDE)
 	@echo "Linking CLIENT done..."
 	
 %.o:$(CLIENT_PATH)/%.cpp
-	$(CC) -c $<
+	$(CC) -c $< $(INCLUDE)
 $(SERVER_BIN):$(SERVER_OBJ)
 	@echo "Linking [$<] to [$@]..."
 	$(CC) -o $@ $^ $(lib)
