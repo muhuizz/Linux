@@ -8,8 +8,10 @@ WINDOW=$(ROOT_PATH)/window
 LIB_PATH=$(ROOT_PATH)/lib
 DATA_POOL_PATH=$(ROOT_PATH)/data_pool
 CC=g++
-INCLUDE=-I$(SERVER_PATH) -I$(DATA_POOL_PATH) -I$(LOG_PATH) -I$(ROOT_PATH)/lib/include -I$(COMM_PATH)
+INCLUDE=-I$(SERVER_PATH) -I$(DATA_POOL_PATH) -I$(LOG_PATH) -I$(COMM_PATH)# -I$(ROOT_PATH)/lib/include
+JSON_INCLUDE=-I$(ROOT_PATH)/lib/include
 lib=-lpthread
+libjson=-ljsoncpp
 COMP=-static
 
 CLIENT_BIN=udpclient
@@ -33,17 +35,17 @@ $(SERVER_BIN):$(SERVER_OBJ)
 
 $(CLIENT_BIN):$(CLIENT_OBJ)
 	@echo "Linking [$<] to [$@]..."
-	$(CC) -o $@ $^ $(COMP) $(lib) -L$(ROOT_PATH)/lib/lib -ljsoncpp
+	$(CC) -o $@ $^ $(COMP) $(lib) -L$(LIB_PATH)/lib $(libjson)
 	@echo "Linking CLIENT done..."
 %.o:$(CLIENT_PATH)/%.cpp
-	$(CC) -c $< $(INCLUDE) -ljsoncpp 
+	$(CC) -c $< $(INCLUDE) $(JSON_INCLUDE) $(libjson)
 
 %.o:$(DATA_POOL_PATH)/%.cpp
 	$(CC) -c $< 
 %.o:$(LOG_PATH)/%.cpp
 	$(CC) -c $< 
 %.o:$(COMM_PATH)/%.cpp
-	$(CC) -c $< $ $(INCLUDE)  
+	$(CC) -c $< $(INCLUDE) $(JSON_INCLUDE) 
 
 .PHONY:clean
 clean:
