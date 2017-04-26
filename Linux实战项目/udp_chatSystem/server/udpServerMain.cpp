@@ -20,13 +20,12 @@ int main(int argc, char *argv[])
 	int _port = atoi(argv[2]);
 	Server svr(_ip, _port);
 	svr.InitServer();
-
 	while(1)
 	{
 		string str;
 		svr.RecvData(str);
+		cout<<"server Recv# "<<str<<endl;
 		sleep(1);
-		cout<<"Server Recv#"<<str<<endl;
 		str.clear();
 		svr.Broadcast();
 	}

@@ -33,17 +33,17 @@ $(SERVER_BIN):$(SERVER_OBJ)
 
 $(CLIENT_BIN):$(CLIENT_OBJ)
 	@echo "Linking [$<] to [$@]..."
-	$(CC) -o $@ $^ $(COMP) $(lib)
+	$(CC) -o $@ $^ $(COMP) $(lib) -L$(ROOT_PATH)/lib/lib -ljsoncpp
 	@echo "Linking CLIENT done..."
 %.o:$(CLIENT_PATH)/%.cpp
-	$(CC) -c $< $(INCLUDE) -ljsoncpp -L$(ROOT_PATH)/lib/lib 
+	$(CC) -c $< $(INCLUDE) -ljsoncpp 
 
 %.o:$(DATA_POOL_PATH)/%.cpp
 	$(CC) -c $< 
 %.o:$(LOG_PATH)/%.cpp
 	$(CC) -c $< 
 %.o:$(COMM_PATH)/%.cpp
-	$(CC) -c $< $ -I$(ROOT_PATH)/lib/include  
+	$(CC) -c $< $ $(INCLUDE)  
 
 .PHONY:clean
 clean:

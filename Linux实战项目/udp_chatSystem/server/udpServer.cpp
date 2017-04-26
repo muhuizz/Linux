@@ -39,6 +39,7 @@ int Server::RecvData(string& recv_str)
 	ssize_t _s = recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr*)&remote, &len);
 	if(_s >= 0)
 	{
+		buf[_s] = 0;
 		recv_str = buf;
 		AddUser(remote);
 		data.PutData(recv_str);

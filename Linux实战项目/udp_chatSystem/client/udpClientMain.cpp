@@ -9,7 +9,7 @@ void Usage(const char* server)
 	cout<<"Usage: "<< server <<"[server_ip] [server_port]"<<endl;
 }
 
-void* SendData(void *arg)
+void* sendToNet(void *arg)
 {
 	Client *cli = (Client*)arg;
 	while(1)
@@ -22,17 +22,20 @@ void* SendData(void *arg)
 		string sendStr;
 		d.valueToString(sendStr);
 		cli->SendData(sendStr);
+		cout<<"client Send# "<<sendStr<<endl;
 		sleep(1);
 	}
 	return NULL;
 }
-void* RecvData(void *arg)
+void* getFromNet(void *arg)
 {
 	Client *cli = (Client*)arg;
 	while(1)
 	{
 		string recvStr;
 		cli->RecvData(recvStr);
+		cout<<"client Recv# "<<endl;
+		//cout<<recvStr<<endl;
 		datatype d;
 		d.stringToValue(recvStr);
 		cout<<d.nick_name<<"-"<<d.school<<":"<<d.msg<<endl;
@@ -55,8 +58,8 @@ int main(int argc, char *argv[])
 	
 	pthread_t pth1;
 	pthread_t pth2;
-	pthread_create(&pth1, NULL, SendData, &cli);
-	pthread_create(&pth2, NULL, RecvData, &cli);
+	pthread_create(&pth1, NULL, sendToNet, &cli);
+	pthread_create(&pth2, NULL, getFromNet, &cli);
 	pthread_join(pth1, NULL);
 	pthread_join(pth2, NULL);
 

@@ -9,9 +9,9 @@ DataPool::DataPool(int capacity = CAPACITY)
 {
 	sem_init(&blank, 0, cap);
 	sem_init(&data, 0, 0);
-	pool.reserve(cap);
+	pool.resize(cap);
 }
-void DataPool::GetData(string outString)
+void DataPool::GetData(string& outString)
 {
 	sem_wait(&data);
 	outString=pool[consumer_pos];
@@ -20,7 +20,7 @@ void DataPool::GetData(string outString)
 	size--;
 	sem_post(&blank);
 }
-void DataPool::PutData(string inString)
+void DataPool::PutData(const string& inString)
 {
 	sem_wait(&blank);
 	pool[product_pos]=inString;

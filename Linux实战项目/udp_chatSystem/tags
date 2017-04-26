@@ -1,0 +1,401 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AddUser	server/udpServer.cpp	/^void Server::AddUser(const struct sockaddr_in remote)$/;"	f	class:Server
+Args	lib/include/json/value.h	/^  typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
+ArrayIndex	lib/include/json/forwards.h	/^typedef unsigned int ArrayIndex;$/;"	t	namespace:Json
+ArrayIndex	lib/include/json/value.h	/^  typedef Json::ArrayIndex ArrayIndex;$/;"	t	class:Json::Value
+Broadcast	server/udpServer.cpp	/^void Server::Broadcast()$/;"	f	class:Server
+CAPACITY	data_pool/dataPool.h	10;"	d
+CC	Makefile	/^CC=g++$/;"	m
+CLIENT_BIN	Makefile	/^CLIENT_BIN=udpclient$/;"	m
+CLIENT_OBJ	Makefile	/^CLIENT_OBJ=$(shell echo $(CLIENT_SRC) | sed 's\/.cpp\/.o\/g')$/;"	m
+CLIENT_PATH	Makefile	/^CLIENT_PATH=$(ROOT_PATH)\/client$/;"	m
+CLIENT_SRC	Makefile	/^CLIENT_SRC=$(shell ls  $(CLIENT_PATH) $(LOG_PATH) $(COMM_PATH)| egrep  '*.cpp')  $/;"	m
+COMM_PATH	Makefile	/^COMM_PATH=$(ROOT_PATH)\/comm$/;"	m
+COMP	Makefile	/^COMP=-static$/;"	m
+CONF_PATH	Makefile	/^CONF_PATH=$(ROOT_PATH)\/conf$/;"	m
+CPPTL_AUTOLINK_DLL	lib/include/json/autolink.h	18;"	d
+CPPTL_AUTOLINK_DLL	lib/include/json/autolink.h	20;"	d
+CPPTL_AUTOLINK_NAME	lib/include/json/autolink.h	17;"	d
+CPPTL_JSON_ALLOCATOR_H_INCLUDED	lib/include/json/allocator.h	7;"	d
+CPPTL_JSON_ASSERTIONS_H_INCLUDED	lib/include/json/assertions.h	7;"	d
+CPPTL_JSON_FEATURES_H_INCLUDED	lib/include/json/features.h	7;"	d
+CPPTL_JSON_H_INCLUDED	lib/include/json/value.h	7;"	d
+CPPTL_JSON_READER_H_INCLUDED	lib/include/json/reader.h	7;"	d
+CZString	lib/include/json/value.h	/^  class CZString {$/;"	c	class:Json::Value
+Char	lib/include/json/reader.h	/^  typedef char Char;$/;"	t	class:Json::Reader
+CharReader	lib/include/json/reader.h	/^class JSON_API CharReader {$/;"	c	namespace:Json
+CharReaderBuilder	lib/include/json/reader.h	/^class JSON_API CharReaderBuilder : public CharReader::Factory {$/;"	c	namespace:Json
+ChildValues	lib/include/json/writer.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	class:Json::StyledStreamWriter
+ChildValues	lib/include/json/writer.h	/^  typedef std::vector<JSONCPP_STRING> ChildValues;$/;"	t	class:Json::StyledWriter
+Client	client/udpClient.cpp	/^Client::Client(const string& _ip, const int& _port)$/;"	f	class:Client
+Client	client/udpClient.h	/^class Client$/;"	c
+CommentInfo	lib/include/json/value.h	/^  struct CommentInfo {$/;"	s	class:Json::Value
+CommentPlacement	lib/include/json/value.h	/^enum CommentPlacement {$/;"	g	namespace:Json
+DATA_POOL_PATH	Makefile	/^DATA_POOL_PATH=$(ROOT_PATH)\/data_pool$/;"	m
+DataPool	data_pool/dataPool.cpp	/^DataPool::DataPool(int capacity = CAPACITY)$/;"	f	class:DataPool
+DataPool	data_pool/dataPool.h	/^class DataPool$/;"	c
+DuplicationPolicy	lib/include/json/value.h	/^    enum DuplicationPolicy {$/;"	g	class:Json::Value::CZString
+ErrorInfo	lib/include/json/reader.h	/^  class ErrorInfo {$/;"	c	class:Json::Reader
+Errors	lib/include/json/reader.h	/^  typedef std::deque<ErrorInfo> Errors;$/;"	t	class:Json::Reader
+Exception	lib/include/json/value.h	/^class JSON_API Exception : public std::exception {$/;"	c	namespace:Json
+FATAL	log/log.h	9;"	d
+Factory	lib/include/json/reader.h	/^  class JSON_API Factory {$/;"	c	class:Json::CharReader
+Factory	lib/include/json/writer.h	/^  class JSON_API Factory {$/;"	c	class:Json::StreamWriter
+FastWriter	lib/include/json/writer.h	/^class JSON_API FastWriter : public Writer {$/;"	c	namespace:Json
+Features	lib/include/json/features.h	/^class JSON_API Features {$/;"	c	namespace:Json
+GetData	data_pool/dataPool.cpp	/^void DataPool::GetData(string outString)$/;"	f	class:DataPool
+INCLUDE	Makefile	/^INCLUDE=-I$(SERVER_PATH) -I$(DATA_POOL_PATH) -I$(LOG_PATH) -I$(ROOT_PATH)\/lib\/include -I$(COMM_PATH)$/;"	m
+INCLUDE	comm/Makefile	/^INCLUDE=-I\/home\/muhui\/code\/chat_system\/lib\/include\/$/;"	m
+InArgs	lib/include/json/value.h	/^  typedef std::vector<const PathArgument*> InArgs;$/;"	t	class:Json::Path
+InitClient	client/udpClient.cpp	/^void Client::InitClient()$/;"	f	class:Client
+InitServer	server/udpServer.cpp	/^void Server::InitServer()$/;"	f	class:Server
+Int	lib/include/json/config.h	/^typedef int Int;$/;"	t	namespace:Json
+Int	lib/include/json/value.h	/^  typedef Json::Int Int;$/;"	t	class:Json::Value
+Int64	lib/include/json/config.h	/^typedef __int64 Int64;$/;"	t	namespace:Json
+Int64	lib/include/json/config.h	/^typedef int64_t Int64;$/;"	t	namespace:Json
+Int64	lib/include/json/value.h	/^  typedef Json::Int64 Int64;$/;"	t	class:Json::Value
+JSONCPP_DEPRECATED	lib/include/json/config.h	125;"	d
+JSONCPP_DEPRECATED	lib/include/json/config.h	127;"	d
+JSONCPP_DEPRECATED	lib/include/json/config.h	132;"	d
+JSONCPP_DEPRECATED	lib/include/json/config.h	76;"	d
+JSONCPP_DISABLE_DLL_INTERFACE_WARNING	lib/include/json/config.h	45;"	d
+JSONCPP_DISABLE_DLL_INTERFACE_WARNING	lib/include/json/config.h	50;"	d
+JSONCPP_ISTREAM	lib/include/json/config.h	174;"	d
+JSONCPP_ISTREAM	lib/include/json/config.h	180;"	d
+JSONCPP_ISTRINGSTREAM	lib/include/json/config.h	173;"	d
+JSONCPP_ISTRINGSTREAM	lib/include/json/config.h	179;"	d
+JSONCPP_NOEXCEPT	lib/include/json/config.h	86;"	d
+JSONCPP_NOEXCEPT	lib/include/json/config.h	89;"	d
+JSONCPP_NOEXCEPT	lib/include/json/config.h	92;"	d
+JSONCPP_NOEXCEPT	lib/include/json/config.h	95;"	d
+JSONCPP_NORETURN	lib/include/json/value.h	30;"	d
+JSONCPP_NORETURN	lib/include/json/value.h	32;"	d
+JSONCPP_NORETURN	lib/include/json/value.h	34;"	d
+JSONCPP_OSTREAM	lib/include/json/config.h	172;"	d
+JSONCPP_OSTREAM	lib/include/json/config.h	178;"	d
+JSONCPP_OSTRINGSTREAM	lib/include/json/config.h	171;"	d
+JSONCPP_OSTRINGSTREAM	lib/include/json/config.h	177;"	d
+JSONCPP_OVERRIDE	lib/include/json/config.h	85;"	d
+JSONCPP_OVERRIDE	lib/include/json/config.h	88;"	d
+JSONCPP_OVERRIDE	lib/include/json/config.h	91;"	d
+JSONCPP_OVERRIDE	lib/include/json/config.h	94;"	d
+JSONCPP_OVERRIDE	lib/include/json/reader.h	/^  CharReader* newCharReader() const JSONCPP_OVERRIDE;$/;"	m	class:Json::CharReaderBuilder
+JSONCPP_OVERRIDE	lib/include/json/reader.h	/^  ~CharReaderBuilder() JSONCPP_OVERRIDE;$/;"	m	class:Json::CharReaderBuilder
+JSONCPP_OVERRIDE	lib/include/json/value.h	/^  char const* what() const JSONCPP_NOEXCEPT JSONCPP_OVERRIDE;$/;"	m	class:Json::Exception
+JSONCPP_OVERRIDE	lib/include/json/value.h	/^  ~Exception() JSONCPP_NOEXCEPT JSONCPP_OVERRIDE;$/;"	m	class:Json::Exception
+JSONCPP_OVERRIDE	lib/include/json/writer.h	/^  JSONCPP_STRING write(const Value& root) JSONCPP_OVERRIDE;$/;"	m	class:Json::FastWriter
+JSONCPP_OVERRIDE	lib/include/json/writer.h	/^  JSONCPP_STRING write(const Value& root) JSONCPP_OVERRIDE;$/;"	m	class:Json::StyledWriter
+JSONCPP_OVERRIDE	lib/include/json/writer.h	/^  StreamWriter* newStreamWriter() const JSONCPP_OVERRIDE;$/;"	m	class:Json::StreamWriterBuilder
+JSONCPP_OVERRIDE	lib/include/json/writer.h	/^  ~StreamWriterBuilder() JSONCPP_OVERRIDE;$/;"	m	class:Json::StreamWriterBuilder
+JSONCPP_STRING	lib/include/json/config.h	170;"	d
+JSONCPP_STRING	lib/include/json/config.h	176;"	d
+JSONCPP_USING_SECURE_MEMORY	lib/include/json/version.h	14;"	d
+JSONCPP_USING_SECURE_MEMORY	lib/include/json/version.h	16;"	d
+JSONCPP_VERSION_HEXA	lib/include/json/version.h	11;"	d
+JSONCPP_VERSION_MAJOR	lib/include/json/version.h	7;"	d
+JSONCPP_VERSION_MINOR	lib/include/json/version.h	8;"	d
+JSONCPP_VERSION_PATCH	lib/include/json/version.h	9;"	d
+JSONCPP_VERSION_QUALIFIER	lib/include/json/version.h	10;"	d
+JSONCPP_VERSION_STRING	lib/include/json/version.h	6;"	d
+JSON_API	lib/include/json/config.h	41;"	d
+JSON_API	lib/include/json/config.h	44;"	d
+JSON_API	lib/include/json/config.h	49;"	d
+JSON_API	lib/include/json/config.h	54;"	d
+JSON_ASSERT	lib/include/json/assertions.h	23;"	d
+JSON_ASSERT	lib/include/json/assertions.h	35;"	d
+JSON_ASSERT_MESSAGE	lib/include/json/assertions.h	49;"	d
+JSON_AUTOLINK_H_INCLUDED	lib/include/json/autolink.h	7;"	d
+JSON_CONFIG_H_INCLUDED	lib/include/json/config.h	7;"	d
+JSON_FAIL_MESSAGE	lib/include/json/assertions.h	26;"	d
+JSON_FAIL_MESSAGE	lib/include/json/assertions.h	39;"	d
+JSON_FORWARDS_H_INCLUDED	lib/include/json/forwards.h	7;"	d
+JSON_HAS_INT64	lib/include/json/config.h	155;"	d
+JSON_HAS_INT64	lib/include/json/config.h	167;"	d
+JSON_HAS_RVALUE_REFERENCES	lib/include/json/config.h	101;"	d
+JSON_HAS_RVALUE_REFERENCES	lib/include/json/config.h	106;"	d
+JSON_HAS_RVALUE_REFERENCES	lib/include/json/config.h	111;"	d
+JSON_HAS_RVALUE_REFERENCES	lib/include/json/config.h	119;"	d
+JSON_JSON_H_INCLUDED	lib/include/json/json.h	7;"	d
+JSON_USE_CPPTL	lib/include/json/config.h	36;"	d
+JSON_USE_EXCEPTION	lib/include/json/config.h	25;"	d
+JSON_USE_INT64_DOUBLE_CONVERSION	lib/include/json/config.h	136;"	d
+JSON_USE_INT64_DOUBLE_CONVERSION	lib/include/json/config.h	66;"	d
+JSON_VERSION_H_INCLUDED	lib/include/json/version.h	4;"	d
+JSON_WRITER_H_INCLUDED	lib/include/json/writer.h	7;"	d
+Json	lib/include/json/allocator.h	/^namespace Json {$/;"	n
+Json	lib/include/json/config.h	/^namespace Json {$/;"	n
+Json	lib/include/json/features.h	/^namespace Json {$/;"	n
+Json	lib/include/json/forwards.h	/^namespace Json {$/;"	n
+Json	lib/include/json/reader.h	/^namespace Json {$/;"	n
+Json	lib/include/json/value.h	/^namespace Json {$/;"	n
+Json	lib/include/json/writer.h	/^namespace Json {$/;"	n
+Kind	lib/include/json/value.h	/^  enum Kind {$/;"	g	class:Json::PathArgument
+LIB	comm/Makefile	/^LIB=-L\/home\/muhui\/code\/chat_system\/lib\/lib\/$/;"	m
+LIB_PATH	Makefile	/^LIB_PATH=$(ROOT_PATH)\/lib$/;"	m
+LOG_PATH	Makefile	/^LOG_PATH=$(ROOT_PATH)\/log$/;"	m
+LargestInt	lib/include/json/config.h	/^typedef Int64 LargestInt;$/;"	t	namespace:Json
+LargestInt	lib/include/json/config.h	/^typedef int LargestInt;$/;"	t	namespace:Json
+LargestInt	lib/include/json/value.h	/^  typedef Json::LargestInt LargestInt;$/;"	t	class:Json::Value
+LargestUInt	lib/include/json/config.h	/^typedef UInt64 LargestUInt;$/;"	t	namespace:Json
+LargestUInt	lib/include/json/config.h	/^typedef unsigned int LargestUInt;$/;"	t	namespace:Json
+LargestUInt	lib/include/json/value.h	/^  typedef Json::LargestUInt LargestUInt;$/;"	t	class:Json::Value
+Location	lib/include/json/reader.h	/^  typedef const Char* Location;$/;"	t	class:Json::Reader
+LogicError	lib/include/json/value.h	/^class JSON_API LogicError : public Exception {$/;"	c	namespace:Json
+Members	lib/include/json/value.h	/^  typedef std::vector<JSONCPP_STRING> Members;$/;"	t	class:Json::Value
+NORMAL	log/log.h	6;"	d
+NOTICE	log/log.h	7;"	d
+Nodes	lib/include/json/reader.h	/^  typedef std::stack<Value*> Nodes;$/;"	t	class:Json::Reader
+ObjectValues	lib/include/json/value.h	/^  typedef CppTL::SmallMap<CZString, Value> ObjectValues;$/;"	t	class:Json::Value
+ObjectValues	lib/include/json/value.h	/^  typedef std::map<CZString, Value> ObjectValues;$/;"	t	class:Json::Value
+Path	lib/include/json/value.h	/^class JSON_API Path {$/;"	c	namespace:Json
+PathArgument	lib/include/json/value.h	/^class JSON_API PathArgument {$/;"	c	namespace:Json
+PutData	data_pool/dataPool.cpp	/^void DataPool::PutData(string inString)$/;"	f	class:DataPool
+ROOT_PATH	Makefile	/^ROOT_PATH=$(shell pwd)$/;"	m
+Reader	lib/include/json/reader.h	/^class JSON_API Reader {$/;"	c	namespace:Json
+RecvData	client/udpClient.cpp	/^int Client::RecvData(string& recv_str)$/;"	f	class:Client
+RecvData	client/udpClientMain.cpp	/^void* RecvData(void *arg)$/;"	f
+RecvData	server/udpServer.cpp	/^int Server::RecvData(string& recv_str)$/;"	f	class:Server
+RuntimeError	lib/include/json/value.h	/^class JSON_API RuntimeError : public Exception {$/;"	c	namespace:Json
+SERVER_BIN	Makefile	/^SERVER_BIN=udpserver$/;"	m
+SERVER_OBJ	Makefile	/^SERVER_OBJ=$(shell echo $(SERVER_SRC) | sed 's\/.cpp\/.o\/g')$/;"	m
+SERVER_PATH	Makefile	/^SERVER_PATH=$(ROOT_PATH)\/server$/;"	m
+SERVER_SRC	Makefile	/^SERVER_SRC=$(shell ls  $(SERVER_PATH) $(DATA_POOL_PATH) $(LOG_PATH) | egrep "*.cpp")$/;"	m
+SIZE	client/udpClient.h	13;"	d
+SIZE	server/udpServer.h	15;"	d
+SecureAllocator	lib/include/json/allocator.h	/^		SecureAllocator() {}$/;"	f	class:Json::SecureAllocator
+SecureAllocator	lib/include/json/allocator.h	/^		template<typename U> SecureAllocator(const SecureAllocator<U>&) {}$/;"	f	class:Json::SecureAllocator
+SecureAllocator	lib/include/json/allocator.h	/^class SecureAllocator {$/;"	c	namespace:Json
+SelfType	lib/include/json/value.h	/^  typedef ValueConstIterator SelfType;$/;"	t	class:Json::ValueConstIterator
+SelfType	lib/include/json/value.h	/^  typedef ValueIterator SelfType;$/;"	t	class:Json::ValueIterator
+SelfType	lib/include/json/value.h	/^  typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
+SendData	client/udpClient.cpp	/^int Client::SendData(const string& str)$/;"	f	class:Client
+SendData	client/udpClientMain.cpp	/^void* SendData(void *arg)$/;"	f
+SendData	server/udpServer.cpp	/^int Server::SendData(const struct sockaddr_in remote, const string& send_str)$/;"	f	class:Server
+Server	server/udpServer.cpp	/^Server::Server(const string& _ip, const int& _port)$/;"	f	class:Server
+Server	server/udpServer.h	/^class Server$/;"	c
+StaticString	lib/include/json/value.h	/^  explicit StaticString(const char* czstring) : c_str_(czstring) {}$/;"	f	class:Json::StaticString
+StaticString	lib/include/json/value.h	/^class JSON_API StaticString {$/;"	c	namespace:Json
+StreamWriter	lib/include/json/writer.h	/^class JSON_API StreamWriter {$/;"	c	namespace:Json
+StreamWriterBuilder	lib/include/json/writer.h	/^class JSON_API StreamWriterBuilder : public StreamWriter::Factory {$/;"	c	namespace:Json
+StringStorage	lib/include/json/value.h	/^    struct StringStorage {$/;"	s	class:Json::Value::CZString
+StructuredError	lib/include/json/reader.h	/^  struct StructuredError {$/;"	s	class:Json::Reader
+StyledStreamWriter	lib/include/json/writer.h	/^class JSON_API StyledStreamWriter {$/;"	c	namespace:Json
+StyledWriter	lib/include/json/writer.h	/^class JSON_API StyledWriter : public Writer {$/;"	c	namespace:Json
+Token	lib/include/json/reader.h	/^  class Token {$/;"	c	class:Json::Reader
+TokenType	lib/include/json/reader.h	/^  enum TokenType {$/;"	g	class:Json::Reader
+UInt	lib/include/json/config.h	/^typedef unsigned int UInt;$/;"	t	namespace:Json
+UInt	lib/include/json/value.h	/^  typedef Json::UInt UInt;$/;"	t	class:Json::Value
+UInt64	lib/include/json/config.h	/^typedef uint64_t UInt64;$/;"	t	namespace:Json
+UInt64	lib/include/json/config.h	/^typedef unsigned __int64 UInt64;$/;"	t	namespace:Json
+UInt64	lib/include/json/value.h	/^  typedef Json::UInt64 UInt64;$/;"	t	class:Json::Value
+Usage	client/udpClientMain.cpp	/^void Usage(const char* server)$/;"	f
+Usage	server/udpServerMain.cpp	/^void Usage(const char* local)$/;"	f
+Value	lib/include/json/value.h	/^class JSON_API Value {$/;"	c	namespace:Json
+ValueConstIterator	lib/include/json/value.h	/^class JSON_API ValueConstIterator : public ValueIteratorBase {$/;"	c	namespace:Json
+ValueHolder	lib/include/json/value.h	/^  union ValueHolder {$/;"	u	class:Json::Value
+ValueIterator	lib/include/json/value.h	/^class JSON_API ValueIterator : public ValueIteratorBase {$/;"	c	namespace:Json
+ValueIteratorBase	lib/include/json/value.h	/^class JSON_API ValueIteratorBase {$/;"	c	namespace:Json
+ValueType	lib/include/json/value.h	/^enum ValueType {$/;"	g	namespace:Json
+WARNING	log/log.h	8;"	d
+WINDOW	Makefile	/^WINDOW=$(ROOT_PATH)\/window$/;"	m
+Writer	lib/include/json/writer.h	/^class JSON_API Writer {$/;"	c	namespace:Json
+_UDPClient_HPP__	client/udpClient.h	2;"	d
+_UDPServer_HPP__	server/udpServer.h	2;"	d
+__DATAPOOL_H__	data_pool/dataPool.h	2;"	d
+__DATATYPE_H__	comm/dataType.h	2;"	d
+__JSONAPI_HPP__	comm/jsonApi.h	2;"	d
+__LOG_H__	log/log.h	2;"	d
+addChildValues_	lib/include/json/writer.h	/^  bool addChildValues_;$/;"	m	class:Json::StyledWriter
+address	lib/include/json/allocator.h	/^		const_pointer address( const_reference x ) const {$/;"	f	class:Json::SecureAllocator
+address	lib/include/json/allocator.h	/^		pointer address( reference x ) const {$/;"	f	class:Json::SecureAllocator
+allocate	lib/include/json/allocator.h	/^		pointer allocate(size_type n) {$/;"	f	class:Json::SecureAllocator
+allowComments_	lib/include/json/features.h	/^  bool allowComments_;$/;"	m	class:Json::Features
+allowDroppedNullPlaceholders_	lib/include/json/features.h	/^  bool allowDroppedNullPlaceholders_;$/;"	m	class:Json::Features
+allowNumericKeys_	lib/include/json/features.h	/^  bool allowNumericKeys_;$/;"	m	class:Json::Features
+args_	lib/include/json/value.h	/^  Args args_;$/;"	m	class:Json::Path
+arrayValue	lib/include/json/value.h	/^  arrayValue,    \/\/\/< array value (ordered list)$/;"	e	enum:Json::ValueType
+begin_	lib/include/json/reader.h	/^  Location begin_;$/;"	m	class:Json::Reader
+blank	data_pool/dataPool.h	/^		sem_t blank;$/;"	m	class:DataPool
+bool_	lib/include/json/value.h	/^    bool bool_;$/;"	m	union:Json::Value::ValueHolder
+booleanValue	lib/include/json/value.h	/^  booleanValue,  \/\/\/< bool value$/;"	e	enum:Json::ValueType
+c_str	lib/include/json/value.h	/^  const char* c_str() const { return c_str_; }$/;"	f	class:Json::StaticString
+c_str_	lib/include/json/value.h	/^  const char* c_str_;$/;"	m	class:Json::StaticString
+cap	data_pool/dataPool.h	/^		int cap;$/;"	m	class:DataPool
+childValues_	lib/include/json/writer.h	/^  ChildValues childValues_;$/;"	m	class:Json::StyledStreamWriter
+childValues_	lib/include/json/writer.h	/^  ChildValues childValues_;$/;"	m	class:Json::StyledWriter
+cmd	comm/dataType.h	/^	std::string cmd;$/;"	m	class:datatype
+collectComments_	lib/include/json/reader.h	/^  bool collectComments_;$/;"	m	class:Json::Reader
+commentAfter	lib/include/json/value.h	/^  commentAfter, \/\/\/< a comment on the line after a value (only make sense for$/;"	e	enum:Json::CommentPlacement
+commentAfterOnSameLine	lib/include/json/value.h	/^  commentAfterOnSameLine, \/\/\/< a comment just after a value on the same line$/;"	e	enum:Json::CommentPlacement
+commentBefore	lib/include/json/value.h	/^  commentBefore = 0,      \/\/\/< a comment placed on the line before a value$/;"	e	enum:Json::CommentPlacement
+comment_	lib/include/json/value.h	/^    char* comment_;$/;"	m	struct:Json::Value::CommentInfo
+commentsBefore_	lib/include/json/reader.h	/^  JSONCPP_STRING commentsBefore_;$/;"	m	class:Json::Reader
+comments_	lib/include/json/value.h	/^  CommentInfo* comments_;$/;"	m	class:Json::Value
+const_iterator	lib/include/json/value.h	/^  typedef ValueConstIterator const_iterator;$/;"	t	class:Json::Value
+construct	lib/include/json/allocator.h	/^		void construct(pointer p, Args&&... args) {$/;"	f	class:Json::SecureAllocator
+consumer_pos	data_pool/dataPool.h	/^		int consumer_pos;$/;"	m	class:DataPool
+cstr_	lib/include/json/value.h	/^    char const* cstr_;  \/\/ actually, a prefixed string, unless policy is noDup$/;"	m	class:Json::Value::CZString
+current_	lib/include/json/reader.h	/^  Location current_;$/;"	m	class:Json::Reader
+current_	lib/include/json/value.h	/^  Value::ObjectValues::iterator current_;$/;"	m	class:Json::ValueIteratorBase
+data	data_pool/dataPool.h	/^		sem_t data;$/;"	m	class:DataPool
+data	server/udpServer.h	/^		DataPool data;$/;"	m	class:Server
+datatype	comm/dataType.h	/^class datatype$/;"	c
+deSerialize	comm/jsonApi.cpp	/^int jsonApi::deSerialize(Json::Value& val, std::string &inString)$/;"	f	class:jsonApi
+deallocate	lib/include/json/allocator.h	/^		void deallocate(volatile pointer p, size_type n) {$/;"	f	class:Json::SecureAllocator
+destroy	lib/include/json/allocator.h	/^		void destroy(pointer p) {$/;"	f	class:Json::SecureAllocator
+difference_type	lib/include/json/value.h	/^  typedef int difference_type;$/;"	t	class:Json::ValueIterator
+difference_type	lib/include/json/value.h	/^  typedef int difference_type;$/;"	t	class:Json::ValueIteratorBase
+document_	lib/include/json/reader.h	/^  JSONCPP_STRING document_;$/;"	m	class:Json::Reader
+document_	lib/include/json/writer.h	/^  JSONCPP_OSTREAM* document_;$/;"	m	class:Json::StyledStreamWriter
+document_	lib/include/json/writer.h	/^  JSONCPP_STRING document_;$/;"	m	class:Json::FastWriter
+document_	lib/include/json/writer.h	/^  JSONCPP_STRING document_;$/;"	m	class:Json::StyledWriter
+dropNullPlaceholders_	lib/include/json/writer.h	/^  bool dropNullPlaceholders_;$/;"	m	class:Json::FastWriter
+duplicate	lib/include/json/value.h	/^      duplicate,$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
+duplicateOnCopy	lib/include/json/value.h	/^      duplicateOnCopy$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
+end_	lib/include/json/reader.h	/^    Location end_;$/;"	m	class:Json::Reader::Token
+end_	lib/include/json/reader.h	/^  Location end_;$/;"	m	class:Json::Reader
+errors_	lib/include/json/reader.h	/^  Errors errors_;$/;"	m	class:Json::Reader
+extra_	lib/include/json/reader.h	/^    Location extra_;$/;"	m	class:Json::Reader::ErrorInfo
+features_	lib/include/json/reader.h	/^  Features features_;$/;"	m	class:Json::Reader
+indentSize_	lib/include/json/writer.h	/^  unsigned int indentSize_;$/;"	m	class:Json::StyledWriter
+indentString_	lib/include/json/writer.h	/^  JSONCPP_STRING indentString_;$/;"	m	class:Json::StyledStreamWriter
+indentString_	lib/include/json/writer.h	/^  JSONCPP_STRING indentString_;$/;"	m	class:Json::StyledWriter
+indentation_	lib/include/json/writer.h	/^  JSONCPP_STRING indentation_;$/;"	m	class:Json::StyledStreamWriter
+index_	lib/include/json/value.h	/^      ArrayIndex index_;$/;"	m	union:Json::Value::CZString::__anon1
+index_	lib/include/json/value.h	/^  ArrayIndex index_;$/;"	m	class:Json::PathArgument
+intValue	lib/include/json/value.h	/^  intValue,      \/\/\/< signed integer value$/;"	e	enum:Json::ValueType
+int_	lib/include/json/value.h	/^    LargestInt int_;$/;"	m	union:Json::Value::ValueHolder
+ip	server/udpServer.h	/^		std::string ip;$/;"	m	class:Server
+isNull_	lib/include/json/value.h	/^  bool isNull_;$/;"	m	class:Json::ValueIteratorBase
+iterator	lib/include/json/value.h	/^  typedef ValueIterator iterator;$/;"	t	class:Json::Value
+iterator_category	lib/include/json/value.h	/^  typedef std::bidirectional_iterator_tag iterator_category;$/;"	t	class:Json::ValueIteratorBase
+jsonApi	comm/jsonApi.h	/^class jsonApi$/;"	c
+key_	lib/include/json/value.h	/^  JSONCPP_STRING key_;$/;"	m	class:Json::PathArgument
+kindIndex	lib/include/json/value.h	/^    kindIndex,$/;"	e	enum:Json::PathArgument::Kind
+kindKey	lib/include/json/value.h	/^    kindKey$/;"	e	enum:Json::PathArgument::Kind
+kindNone	lib/include/json/value.h	/^    kindNone = 0,$/;"	e	enum:Json::PathArgument::Kind
+kind_	lib/include/json/value.h	/^  Kind kind_;$/;"	m	class:Json::PathArgument
+lastValueEnd_	lib/include/json/reader.h	/^  Location lastValueEnd_;$/;"	m	class:Json::Reader
+lastValue_	lib/include/json/reader.h	/^  Value* lastValue_;$/;"	m	class:Json::Reader
+length_	lib/include/json/value.h	/^      unsigned length_: 30; \/\/ 1GB max$/;"	m	struct:Json::Value::CZString::StringStorage
+lib	Makefile	/^lib=-lpthread$/;"	m
+lib	comm/Makefile	/^lib=-ljsoncpp$/;"	m
+limit_	lib/include/json/value.h	/^  ptrdiff_t limit_;$/;"	m	class:Json::Value
+main	client/udpClientMain.cpp	/^int main(int argc, char *argv[])$/;"	f
+main	comm/dataType.cpp	/^int main()$/;"	f
+main	server/udpServerMain.cpp	/^int main(int argc, char *argv[])$/;"	f
+map_	lib/include/json/value.h	/^    ObjectValues* map_;$/;"	m	union:Json::Value::ValueHolder
+maxInt	lib/include/json/value.h	/^  static const Int maxInt;$/;"	m	class:Json::Value
+maxInt64	lib/include/json/value.h	/^  static const Int64 maxInt64;$/;"	m	class:Json::Value
+maxLargestInt	lib/include/json/value.h	/^  static const LargestInt maxLargestInt;$/;"	m	class:Json::Value
+maxLargestUInt	lib/include/json/value.h	/^  static const LargestUInt maxLargestUInt;$/;"	m	class:Json::Value
+maxUInt	lib/include/json/value.h	/^  static const UInt maxUInt;$/;"	m	class:Json::Value
+maxUInt64	lib/include/json/value.h	/^  static const UInt64 maxUInt64;$/;"	m	class:Json::Value
+max_size	lib/include/json/allocator.h	/^		size_type max_size() const {$/;"	f	class:Json::SecureAllocator
+message	lib/include/json/reader.h	/^    JSONCPP_STRING message;$/;"	m	struct:Json::Reader::StructuredError
+message_	lib/include/json/reader.h	/^    JSONCPP_STRING message_;$/;"	m	class:Json::Reader::ErrorInfo
+minInt	lib/include/json/value.h	/^  static const Int minInt;$/;"	m	class:Json::Value
+minInt64	lib/include/json/value.h	/^  static const Int64 minInt64;$/;"	m	class:Json::Value
+minLargestInt	lib/include/json/value.h	/^  static const LargestInt minLargestInt;$/;"	m	class:Json::Value
+msg	comm/dataType.h	/^	std::string msg;$/;"	m	class:datatype
+msg_	lib/include/json/value.h	/^  JSONCPP_STRING msg_;$/;"	m	class:Json::Exception
+nick_name	comm/dataType.h	/^	std::string nick_name;$/;"	m	class:datatype
+noDuplication	lib/include/json/value.h	/^      noDuplication = 0,$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
+nodes_	lib/include/json/reader.h	/^  Nodes nodes_;$/;"	m	class:Json::Reader
+null	lib/include/json/value.h	/^  static const Value& null;  \/\/\/< We regret this reference to a global instance; prefer the simpler Value().$/;"	m	class:Json::Value
+nullRef	lib/include/json/value.h	/^  static const Value& nullRef;  \/\/\/< just a kludge for binary-compatibility; same as null$/;"	m	class:Json::Value
+nullValue	lib/include/json/value.h	/^  nullValue = 0, \/\/\/< 'null' value$/;"	e	enum:Json::ValueType
+numberOfCommentPlacement	lib/include/json/value.h	/^  numberOfCommentPlacement$/;"	e	enum:Json::CommentPlacement
+objectValue	lib/include/json/value.h	/^  objectValue    \/\/\/< object value (collection of name\/value pairs).$/;"	e	enum:Json::ValueType
+offset_limit	lib/include/json/reader.h	/^    ptrdiff_t offset_limit;$/;"	m	struct:Json::Reader::StructuredError
+offset_start	lib/include/json/reader.h	/^    ptrdiff_t offset_start;$/;"	m	struct:Json::Reader::StructuredError
+omitEndingLineFeed_	lib/include/json/writer.h	/^  bool omitEndingLineFeed_;$/;"	m	class:Json::FastWriter
+operator !=	lib/include/json/allocator.h	/^bool operator!=(const SecureAllocator<T>&, const SecureAllocator<U>&) {$/;"	f	namespace:Json
+operator !=	lib/include/json/value.h	/^  bool operator!=(const SelfType& other) const { return !isEqual(other); }$/;"	f	class:Json::ValueIteratorBase
+operator *	lib/include/json/value.h	/^  reference operator*() const { return deref(); }$/;"	f	class:Json::ValueConstIterator
+operator *	lib/include/json/value.h	/^  reference operator*() const { return deref(); }$/;"	f	class:Json::ValueIterator
+operator ++	lib/include/json/value.h	/^  SelfType operator++(int) {$/;"	f	class:Json::ValueConstIterator
+operator ++	lib/include/json/value.h	/^  SelfType operator++(int) {$/;"	f	class:Json::ValueIterator
+operator ++	lib/include/json/value.h	/^  SelfType& operator++() {$/;"	f	class:Json::ValueConstIterator
+operator ++	lib/include/json/value.h	/^  SelfType& operator++() {$/;"	f	class:Json::ValueIterator
+operator -	lib/include/json/value.h	/^  difference_type operator-(const SelfType& other) const {$/;"	f	class:Json::ValueIteratorBase
+operator --	lib/include/json/value.h	/^  SelfType operator--(int) {$/;"	f	class:Json::ValueConstIterator
+operator --	lib/include/json/value.h	/^  SelfType operator--(int) {$/;"	f	class:Json::ValueIterator
+operator --	lib/include/json/value.h	/^  SelfType& operator--() {$/;"	f	class:Json::ValueConstIterator
+operator --	lib/include/json/value.h	/^  SelfType& operator--() {$/;"	f	class:Json::ValueIterator
+operator ->	lib/include/json/value.h	/^  pointer operator->() const { return &deref(); }$/;"	f	class:Json::ValueConstIterator
+operator ->	lib/include/json/value.h	/^  pointer operator->() const { return &deref(); }$/;"	f	class:Json::ValueIterator
+operator ==	lib/include/json/allocator.h	/^bool operator==(const SecureAllocator<T>&, const SecureAllocator<U>&) {$/;"	f	namespace:Json
+operator ==	lib/include/json/value.h	/^  bool operator==(const SelfType& other) const { return isEqual(other); }$/;"	f	class:Json::ValueIteratorBase
+operator const char*	lib/include/json/value.h	/^  operator const char*() const { return c_str_; }$/;"	f	class:Json::StaticString
+pointer	lib/include/json/value.h	/^  typedef Value* pointer;$/;"	t	class:Json::ValueIterator
+pointer	lib/include/json/value.h	/^  typedef const Value* pointer;$/;"	t	class:Json::ValueConstIterator
+policy_	lib/include/json/value.h	/^      unsigned policy_: 2;$/;"	m	struct:Json::Value::CZString::StringStorage
+pool	data_pool/dataPool.h	/^		std::vector<std::string> pool;$/;"	m	class:DataPool
+port	server/udpServer.h	/^		int port;$/;"	m	class:Server
+print_log	log/log.cpp	/^void print_log(const char* msg, int level)$/;"	f
+product_pos	data_pool/dataPool.h	/^		int product_pos;$/;"	m	class:DataPool
+realValue	lib/include/json/value.h	/^  realValue,     \/\/\/< double value$/;"	e	enum:Json::ValueType
+real_	lib/include/json/value.h	/^    double real_;$/;"	m	union:Json::Value::ValueHolder
+rebind	lib/include/json/allocator.h	/^		template<typename U> struct rebind { using other = SecureAllocator<U>; };$/;"	s	class:Json::SecureAllocator
+reference	lib/include/json/value.h	/^  typedef Value& reference;$/;"	t	class:Json::ValueIterator
+reference	lib/include/json/value.h	/^  typedef const Value& reference;$/;"	t	class:Json::ValueConstIterator
+rightMargin_	lib/include/json/writer.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::StyledStreamWriter
+rightMargin_	lib/include/json/writer.h	/^  unsigned int rightMargin_;$/;"	m	class:Json::StyledWriter
+school	comm/dataType.h	/^	std::string school;$/;"	m	class:datatype
+serialize	comm/jsonApi.cpp	/^int jsonApi::serialize(const Json::Value &val, std::string& outString)$/;"	f	class:jsonApi
+server_ip	client/udpClient.h	/^		std::string server_ip;$/;"	m	class:Client
+server_port	client/udpClient.h	/^		int server_port;$/;"	m	class:Client
+settings_	lib/include/json/reader.h	/^  Json::Value settings_;$/;"	m	class:Json::CharReaderBuilder
+settings_	lib/include/json/writer.h	/^  Json::Value settings_;$/;"	m	class:Json::StreamWriterBuilder
+size	data_pool/dataPool.h	/^		int size;$/;"	m	class:DataPool
+size_t	lib/include/json/value.h	/^  typedef unsigned int size_t;$/;"	t	class:Json::ValueIterator
+size_t	lib/include/json/value.h	/^  typedef unsigned int size_t;$/;"	t	class:Json::ValueIteratorBase
+sock	client/udpClient.h	/^		int sock;$/;"	m	class:Client
+sock	server/udpServer.h	/^		int sock;$/;"	m	class:Server
+sout_	lib/include/json/writer.h	/^  JSONCPP_OSTREAM* sout_;  \/\/ not owned; will not delete$/;"	m	class:Json::StreamWriter
+start_	lib/include/json/reader.h	/^    Location start_;$/;"	m	class:Json::Reader::Token
+start_	lib/include/json/value.h	/^  ptrdiff_t start_;$/;"	m	class:Json::Value
+stat	log/log.cpp	/^const static std::string stat[]={$/;"	v	file:
+std	lib/include/json/value.h	/^namespace std {$/;"	n
+storage_	lib/include/json/value.h	/^      StringStorage storage_;$/;"	m	union:Json::Value::CZString::__anon1
+strictRoot_	lib/include/json/features.h	/^  bool strictRoot_;$/;"	m	class:Json::Features
+stringToValue	comm/dataType.cpp	/^int datatype::stringToValue(string& inString)$/;"	f	class:datatype
+stringValue	lib/include/json/value.h	/^  stringValue,   \/\/\/< UTF-8 string value$/;"	e	enum:Json::ValueType
+string_	lib/include/json/value.h	/^    char* string_;  \/\/ actually ptr to unsigned, followed by str, unless !allocated_$/;"	m	union:Json::Value::ValueHolder
+swap	lib/include/json/value.h	/^inline void swap(Json::Value& a, Json::Value& b) { a.swap(b); }$/;"	f	namespace:std
+tokenArrayBegin	lib/include/json/reader.h	/^    tokenArrayBegin,$/;"	e	enum:Json::Reader::TokenType
+tokenArrayEnd	lib/include/json/reader.h	/^    tokenArrayEnd,$/;"	e	enum:Json::Reader::TokenType
+tokenArraySeparator	lib/include/json/reader.h	/^    tokenArraySeparator,$/;"	e	enum:Json::Reader::TokenType
+tokenComment	lib/include/json/reader.h	/^    tokenComment,$/;"	e	enum:Json::Reader::TokenType
+tokenEndOfStream	lib/include/json/reader.h	/^    tokenEndOfStream = 0,$/;"	e	enum:Json::Reader::TokenType
+tokenError	lib/include/json/reader.h	/^    tokenError$/;"	e	enum:Json::Reader::TokenType
+tokenFalse	lib/include/json/reader.h	/^    tokenFalse,$/;"	e	enum:Json::Reader::TokenType
+tokenMemberSeparator	lib/include/json/reader.h	/^    tokenMemberSeparator,$/;"	e	enum:Json::Reader::TokenType
+tokenNull	lib/include/json/reader.h	/^    tokenNull,$/;"	e	enum:Json::Reader::TokenType
+tokenNumber	lib/include/json/reader.h	/^    tokenNumber,$/;"	e	enum:Json::Reader::TokenType
+tokenObjectBegin	lib/include/json/reader.h	/^    tokenObjectBegin,$/;"	e	enum:Json::Reader::TokenType
+tokenObjectEnd	lib/include/json/reader.h	/^    tokenObjectEnd,$/;"	e	enum:Json::Reader::TokenType
+tokenString	lib/include/json/reader.h	/^    tokenString,$/;"	e	enum:Json::Reader::TokenType
+tokenTrue	lib/include/json/reader.h	/^    tokenTrue,$/;"	e	enum:Json::Reader::TokenType
+token_	lib/include/json/reader.h	/^    Token token_;$/;"	m	class:Json::Reader::ErrorInfo
+type_	lib/include/json/reader.h	/^    TokenType type_;$/;"	m	class:Json::Reader::Token
+uintValue	lib/include/json/value.h	/^  uintValue,     \/\/\/< unsigned integer value$/;"	e	enum:Json::ValueType
+uint_	lib/include/json/value.h	/^    LargestUInt uint_;$/;"	m	union:Json::Value::ValueHolder
+user_list	server/udpServer.h	/^		map<in_addr_t, struct sockaddr_in> user_list;$/;"	m	class:Server
+valueToString	comm/dataType.cpp	/^int datatype::valueToString(string& outString)$/;"	f	class:datatype
+value_	lib/include/json/value.h	/^  } value_;$/;"	m	class:Json::Value	typeref:union:Json::Value::ValueHolder
+value_type	lib/include/json/value.h	/^  typedef Value value_type;$/;"	t	class:Json::ValueIterator
+value_type	lib/include/json/value.h	/^  typedef const Value value_type;$/;"	t	class:Json::ValueConstIterator
+yamlCompatiblityEnabled_	lib/include/json/writer.h	/^  bool yamlCompatiblityEnabled_;$/;"	m	class:Json::FastWriter
+~CharReader	lib/include/json/reader.h	/^  virtual ~CharReader() {}$/;"	f	class:Json::CharReader
+~Client	client/udpClient.cpp	/^Client::~Client()$/;"	f	class:Client
+~DataPool	data_pool/dataPool.cpp	/^DataPool::~DataPool()$/;"	f	class:DataPool
+~Factory	lib/include/json/reader.h	/^    virtual ~Factory() {}$/;"	f	class:Json::CharReader::Factory
+~Server	server/udpServer.cpp	/^Server::~Server()$/;"	f	class:Server
+~StyledStreamWriter	lib/include/json/writer.h	/^  ~StyledStreamWriter() {}$/;"	f	class:Json::StyledStreamWriter

@@ -13,8 +13,8 @@ class DataPool
 {
 	public:
 		DataPool(int capacity);
-		void GetData(std::string outString);
-		void PutData(std::string inString);
+		void GetData(std::string& outString);
+		void PutData(const std::string& inString);
 			
 		~DataPool();
 	protected:
