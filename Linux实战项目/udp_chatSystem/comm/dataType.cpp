@@ -5,10 +5,6 @@ using namespace std;
 int datatype::valueToString(string& outString)
 {
 	Json::Value v;
-//	v["nick_name"] = "zhang san";
-//	v["school"] = "SUST";
-//	v["msg"] = "hello world";
-//	v["cmd"] = "None";
 	v["nick_name"] = nick_name;
 	v["school"] = school;
 	v["msg"] = msg;
@@ -26,7 +22,7 @@ int datatype::stringToValue(string& inString)
 	cmd = v["cmd"].asString();
 }
 
-#ifdef DEBUG
+#ifdef _DEBUG_
 int main()
 {
 	datatype dat;

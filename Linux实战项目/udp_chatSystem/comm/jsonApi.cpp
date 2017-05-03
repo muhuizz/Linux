@@ -11,7 +11,7 @@ int jsonApi::serialize(const Json::Value &val, std::string& outString)
 	Json::StyledWriter w;
 	outString = w.write(val);
 #endif
-	return 1;
+	return 0;
 }
 
 int jsonApi::deSerialize(Json::Value& val, std::string &inString)
@@ -19,9 +19,9 @@ int jsonApi::deSerialize(Json::Value& val, std::string &inString)
 	Json::Reader r;
 	if(r.parse(inString, val, false))
 	{
-		return 0;
+		return 1;
 	}
-	return 1;
+	return 0;
 }
 
 //int main()

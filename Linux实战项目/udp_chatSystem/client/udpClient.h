@@ -9,7 +9,10 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <cstdlib>
+#include <vector>
+#include <signal.h>
 #include "log.h"
+#include <algorithm>
 #define SIZE 1024
 
 class Client
@@ -19,7 +22,10 @@ class Client
 		void InitClient();
 		int RecvData(std::string& recv_str);
 		int SendData(const std::string& send_str);
+		void AddUser(const std::string& _friend);
+		void DelUser(const std::string& _friend);
 		~Client();
+		std::vector<std::string> friend_online;
 	private:
 		Client(const Client& svr);
 	protected:

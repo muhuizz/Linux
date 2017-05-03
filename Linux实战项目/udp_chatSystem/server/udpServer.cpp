@@ -4,7 +4,7 @@ using namespace std;
 Server::Server(const string& _ip, const int& _port)
 	:ip(_ip)
 	 ,port(_port)
-	 ,data(128)
+	 ,data(DATAPOOL_SIZE)
 {}
 
 void Server::InitServer()
@@ -31,18 +31,37 @@ void Server::AddUser(const struct sockaddr_in remote)
 	user_list[remote.sin_addr.s_addr] = remote;
 }
 
-int Server::RecvData(string& recv_str)
+void Server::DelUser(const struct sockaddr_in remote)
+{
+	map<in_addr_t, struct sockaddr_in>::iterator iter = user_list.find(remote.sin_addr.s_addr);
+	if(iter != user_list.end())
+	{
+		user_list.erase(iter->first);
+	}
+}
+
+int Server::RecvData(std::string& recvStr)
 {
 	char buf[SIZE];
 	struct sockaddr_in remote;
 	socklen_t len = sizeof(remote);
 	ssize_t _s = recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr*)&remote, &len);
-	if(_s >= 0)
+	if(_s >= 0)	// ***优化***
 	{
+		datatype d;
 		buf[_s] = 0;
-		recv_str = buf;
-		AddUser(remote);
-		data.PutData(recv_str);
+		recvStr = buf;
+		data.PutData(recvStr);
+
+		d.stringToValue(recvStr);
+		if(d.cmd == "QUIT")
+		{
+			DelUser(remote);
+		}
+		else
+		{
+			AddUser(remote);
+		}
 	}
 	return _s;
 }

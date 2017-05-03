@@ -14,19 +14,31 @@ Window::~Window()
 	endwin();
 }
 
+void Window::fresh_window(WINDOW* win)
+{
+	wrefresh(win);
+}
 
-
-WINDOW* Window::create_newwin(int y, int x, int starty, int startx)
+WINDOW* Window::create_newwin(int y, int x, int starty, int startx, char ch)
 {
 	WINDOW* win = newwin(y, x, starty, startx);
-	box(win, '*', '*');
+	box(win, ch, ch);
 	return win;
 }
 
-void Window::display_msg(WINDOW* win, int starty, int startx, const std::string msg)
+void Window::send_msg_to_window(WINDOW* win, int starty, int startx, const std::string& msg)
 {
 	mvwaddstr(win, starty, startx, msg.c_str());
-	wrefresh(win);
+	fresh_window(win);
+}
+
+void Window::recv_msg_from_window(WINDOW* win, std::string& msg, size_t sz)
+{
+	char buf[1024];
+	memset(buf, 0, sizeof(buf));
+
+	wgetnstr(win, buf, sizeof(buf));
+	msg = buf;
 }
 
 void Window::clear_lines(WINDOW* win, int begin, int line)
@@ -40,118 +52,73 @@ void Window::clear_lines(WINDOW* win, int begin, int line)
 
 void Window::draw_header_windows()
 {
-	int line = LINES/5;
-	int col = COLS;
-	int start_line = 0;
-	int start_col = 0;
-	header = create_newwin(line, col, start_line, start_col);
-	wrefresh(header);
+	int _h = LINES/5;
+	int _w = COLS;
+	int _y = 0;
+	int _x = 0;
+	header = create_newwin(_h, _w, _y, _x, '*');
+	fresh_window(header);
 }
 void Window::draw_output_windows()
 {
-	int line = LINES*3/5;
-	int col = COLS*3/4;
-	int start_line = LINES/5;
-	int start_col = 0;
-	output = create_newwin(line, col, start_line, start_col);
-	wrefresh(output);
+	int _h = LINES*3/5;
+	int _w = COLS*3/4;
+	int _y = LINES/5;
+	int _x = 0;
+	output = create_newwin(_h, _w, _y, _x, 0);
+	fresh_window(output);
 }
 void Window::draw_input_windows()
 {
-	int line = LINES/5;
-	int col = COLS;
-	int start_line = LINES*4/5;
-	int start_col = 0;
-	input = create_newwin(line, col, start_line, start_col);
-	wrefresh(input);
+	int _h = LINES/5;
+	int _w = COLS;
+	int _y = LINES*4/5;
+	int _x = 0;
+	input = create_newwin(_h, _w, _y, _x, '~');
+	fresh_window(input);
 }
 void Window::draw_friend_list_windows()
 {
-	int line = LINES*3/5;
-	int col = COLS/4;
-	int start_line = LINES*1/5;
-	int start_col = COLS*3/4;
-	friend_list = create_newwin(line, col, start_line, start_col);
-	wrefresh(friend_list);
+	int _h = LINES*3/5;
+	int _w = COLS/4;
+	int _y = LINES*1/5;
+	int _x = COLS*3/4;
+	friend_list = create_newwin(_h, _w, _y, _x, 0);
+	fresh_window(friend_list);
 }
 
-void* header_fun(void *arg)
+#ifdef _DEBUG_
+void *header_fun(void* arg)
 {
 	pthread_detach(pthread_self());
-	Window* pwin = (Window*)arg;
-	int index = 1;
-	while(1)
-	{
-		pwin->draw_header_windows();
-		int nowy = 0;
-		int nowx = 0;
-		getmaxyx(pwin->header, nowy, nowx);
-		string msg = "Welcome to ChatingSystem^-^";
-		
-		pwin->display_msg(pwin->header, nowy/2-1, index++, msg);
-		index%=(COLS-msg.size());
-		if(index == 0)
-			index = 1;
-		usleep(300000);
-	}
+	Window* pwin = (Window*) arg;
+	pwin->draw_header_windows();
 	return NULL;
 }
-
-void* output_fun(void *arg)
+void* output_fun(void* arg)
 {
 	pthread_detach(pthread_self());
-	Window* pwin = (Window*)arg;
+	Window* pwin = (Window*) arg;
 	pwin->draw_output_windows();
-	string msg = "abcdefgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-	int index = 1 ;
-	while(1)
-	{
-		int x = 0;
-		int y = 0;
-		getmaxyx(pwin->output, y, x);
-		index %= (y-1);
-		if(index == 0)
-			index = 1;
-		
-		pwin->display_msg(pwin->output, index, 1, msg.c_str());
-		index++;
-		usleep(300000);
-		if(index >= (y-1))
-		{
-			pwin->clear_lines(pwin->output, 1, y-2);
-			pwin->draw_output_windows();
-			sleep(1);
-		}
-	}
 	return NULL;
 }
 
 void* input_fun(void* arg)
 {
 	pthread_detach(pthread_self());
-	Window* pwin = (Window*)arg;
-	int index = 0;
-	while(1)
-	{
-		char buf[1024];
-		memset(buf, '\0', sizeof(buf));
-		pwin->draw_input_windows();
-		pwin->display_msg(pwin->input, 1, 1, "Please Input# ");
-		keypad(pwin->input, true);
-		wgetnstr(pwin->input, buf, sizeof(buf)-1);
-	}
+	Window* pwin = (Window*) arg;
+	pwin->draw_input_windows();
 	return NULL;
 }
 
 void* friend_list_fun(void* arg)
 {
 	pthread_detach(pthread_self());
-	Window* pwin = (Window*)arg;
+	Window* pwin = (Window*) arg;
 	pwin->draw_friend_list_windows();
 	return NULL;
 }
 
-// #ifdef _DEBUG_
 int main()
 {
 	Window win;
@@ -168,15 +135,6 @@ int main()
 	while(1);
 	return 0;
 }
-// #endif //_DEBUG_
 
+#endif //_DEBUG_
 
-
-
-
-
-
-
-
-
- 
