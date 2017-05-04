@@ -25,12 +25,20 @@ function serverStart()
 
 function serverStop()
 {
-	:
+	name=$(basename $SERVER_BIN)
+	pid=`pidof $name`
+	if [ $? -eq 0 ]; then
+		$(kill -9 ${pid})
+		echo "udpserver is stoped!"
+	else
+		echo "udpserver is not start"
+	fi
 }
 
-function serverReStart()
+function serverRestart()
 {
-	:
+	serverStop
+	serverStart
 }
 
 if [ $# -ne 1 ];then
@@ -41,7 +49,6 @@ fi
 case $1 in 
 	-s | start )
 		serverStart
-		echo "start"
 	;;
 	-t | stop )
 		serverStop

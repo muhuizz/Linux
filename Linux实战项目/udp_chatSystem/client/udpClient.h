@@ -13,6 +13,7 @@
 #include <signal.h>
 #include "log.h"
 #include <algorithm>
+#include <set>
 #define SIZE 1024
 
 class Client
@@ -25,7 +26,8 @@ class Client
 		void AddUser(const std::string& _friend);
 		void DelUser(const std::string& _friend);
 		~Client();
-		std::vector<std::string> friend_online;
+		//std::vector<std::string> friend_online;
+		std::set<std::string> friend_online;
 	private:
 		Client(const Client& svr);
 	protected:

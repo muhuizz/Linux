@@ -86,7 +86,7 @@ void* output_fun(void *arg)
 			win.send_msg_to_window(win.output, index++, 1, recv_msg);
 		}
 		
-		vector<string>::iterator iter = (cli->friend_online).begin();
+		set<string>::iterator iter = (cli->friend_online).begin();
 		int j = 1;
 		win.clear_lines(win.friend_list, 1, y-2);
 		win.draw_friend_list_windows();
