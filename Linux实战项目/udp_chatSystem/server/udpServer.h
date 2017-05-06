@@ -10,6 +10,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <cstdlib>
+#include <pthread.h>
 #include "log.h"
 #include "dataPool.h"
 #include "dataType.h"
