@@ -23,15 +23,3 @@ int jsonApi::deSerialize(Json::Value& val, std::string &inString)
 	}
 	return 0;
 }
-
-//int main()
-//{
-//	jsonApi obj;
-//	Json::Value v;
-//	v["nick_name"] = "abcd";
-//	v["nschool"] = "SUST";
-//	string str;
-//	obj.serialize(v, str);
-//	cout<<str<<endl;
-//	return 0;
-//}

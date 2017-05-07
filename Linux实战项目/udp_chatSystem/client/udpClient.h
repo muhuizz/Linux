@@ -26,7 +26,6 @@ class Client
 		void AddUser(const std::string& _friend);
 		void DelUser(const std::string& _friend);
 		~Client();
-		//std::vector<std::string> friend_online;
 		std::set<std::string> friend_online;
 	private:
 		Client(const Client& svr);

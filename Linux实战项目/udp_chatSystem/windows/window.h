@@ -29,5 +29,4 @@ public:
 	WINDOW* friend_list;
 };
 
-
 #endif// __WINDOW_H__

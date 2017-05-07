@@ -8,10 +8,8 @@
 class jsonApi
 {
 public:
-	// xu lie hua 
 	static int serialize(const Json::Value &val, std::string& outString);
 
-	// fan xu lie hua
 	static int deSerialize(Json::Value& val, std::string &inString);
 };
 

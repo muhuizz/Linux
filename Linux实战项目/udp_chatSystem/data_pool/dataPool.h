@@ -15,7 +15,6 @@ class DataPool
 		DataPool(int capacity);
 		void GetData(std::string& outString);
 		void PutData(const std::string& inString);
-			
 		~DataPool();
 	protected:
 		std::vector<std::string> pool;

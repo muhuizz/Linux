@@ -16,6 +16,7 @@
 #include "dataType.h"
 #define SIZE 1024
 #define DATAPOOL_SIZE 1024
+
 class Server
 {
 	public:
@@ -33,7 +34,7 @@ class Server
 		int sock;
 		std::string ip;
 		int port;
-		map<in_addr_t, struct sockaddr_in> user_list;	// 优化
+		map<in_addr_t, struct sockaddr_in> user_list;
 		DataPool data;
 };
 

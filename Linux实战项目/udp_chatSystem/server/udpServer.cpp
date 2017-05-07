@@ -46,7 +46,7 @@ int Server::RecvData(std::string& recvStr)
 	struct sockaddr_in remote;
 	socklen_t len = sizeof(remote);
 	ssize_t _s = recvfrom(sock, buf, sizeof(buf), 0, (struct sockaddr*)&remote, &len);
-	if(_s >= 0)	// ***优化***
+	if(_s >= 0)	
 	{
 		datatype d;
 		buf[_s] = 0;
@@ -55,13 +55,9 @@ int Server::RecvData(std::string& recvStr)
 
 		d.stringToValue(recvStr);
 		if(d.cmd == "QUIT")
-		{
 			DelUser(remote);
-		}
 		else
-		{
 			AddUser(remote);
-		}
 	}
 	return _s;
 }

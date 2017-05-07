@@ -17,11 +17,6 @@ void Client::InitClient()
 
 void Client::AddUser(const std::string& _friend)
 {
-//	vector<std::string>::iterator iter = find(friend_online.begin(), friend_online.end(), _friend);
-//	if(iter == friend_online.end())
-//	{
-//		friend_online.push_back(_friend);
-//	}
 	set<string>::iterator iter = friend_online.find(_friend);
 	if(iter == friend_online.end())
 	{
@@ -31,11 +26,6 @@ void Client::AddUser(const std::string& _friend)
 
 void Client::DelUser(const std::string& _friend)
 {
-//	vector<std::string>::iterator iter = find(friend_online.begin(), friend_online.end(), _friend);
-//	if(iter != friend_online.end())
-//	{
-//		friend_online.erase(iter);
-//	}
 	set<string>::iterator iter = friend_online.find(_friend);
 	if(iter != friend_online.end())
 	{

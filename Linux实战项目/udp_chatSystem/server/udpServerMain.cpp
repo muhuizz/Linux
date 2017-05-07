@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	Server svr(_ip, _port);
 	svr.InitServer();
 
-	daemon(1,0);
+	daemon(0,0);
 	pthread_t recv;
 	pthread_t send;
 

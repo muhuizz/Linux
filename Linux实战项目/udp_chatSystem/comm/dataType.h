@@ -17,5 +17,4 @@ public:
 	std::string cmd;
 };
 
-
 #endif// __DATATYPE_H__

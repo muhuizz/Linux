@@ -11,6 +11,7 @@ DataPool::DataPool(int capacity = CAPACITY)
 	sem_init(&data, 0, 0);
 	pool.resize(cap);
 }
+
 void DataPool::GetData(string& outString)
 {
 	sem_wait(&data);
@@ -20,6 +21,7 @@ void DataPool::GetData(string& outString)
 	size--;
 	sem_post(&blank);
 }
+
 void DataPool::PutData(const string& inString)
 {
 	sem_wait(&blank);
@@ -29,6 +31,7 @@ void DataPool::PutData(const string& inString)
 	size++;
 	sem_post(&data);
 }
+
 DataPool::~DataPool()
 {
 	cap = 0;
