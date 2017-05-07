@@ -24,5 +24,6 @@
 
 int handle_client(int sock);
 void print_log(const char * msg, int type);
+int startup(const char *_ip, int _port);
 
 #endif// _HTTPD_H_

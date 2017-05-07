@@ -1,6 +1,5 @@
 #include "mysql_api.h"
 
-
 sql_cgi::sql_cgi()
 {
 	conn=mysql_init(NULL);
@@ -22,25 +21,45 @@ int sql_cgi::sql_connect_cgi()
 		return 0;
 	}
 }
+int sql_cgi::sql_select_cgi()
+{
+	string msg = "select * from student_info";
+	MYSQL_RES *res;
+	MYSQL_ROW row;
+	MYSQL_FIELD *fd;
+	if(mysql_real_query(conn, msg.c_str(),(unsigned long) msg.size()))
+	{
+		return -1;
+	}
+	res = mysql_store_result(conn);
+	int line = mysql_num_rows(res);		// line num
+	int fields = mysql_num_fields(res);	// list num
+	fd = mysql_fetch_fields(res);
+	for(int i =0; i < fields; i++)
+	{
+		cout<<fd[i].name<<"   ";
+	}
+	cout<<"<br>"<<endl;
+	while(row = mysql_fetch_row(res))
+	{
+		for(int i = 0; i < fields-1; i++)
+		{
+			cout<<row[i]<<"   ";
+		}
+		cout<<"<br>"<<endl;
+	}
+	cout<<"<br><br>"<<endl;
+	mysql_free_result(res);
+	return 0;
+}
+
+#ifdef _DEBUG
 int sql_cgi::sql_insert_cgi()
 {
 	string msg = "insert into student_info (name, sex, age, school) VALUES (";
 	
 	//'muhui', 'man', 22, 'sust_dx'";
 	string info = "'muhui', 'man', 22, 'sust_dx'";
-	msg+=info;
-	msg+=')';
-	if(mysql_real_query(conn, msg.c_str(),(unsigned long)msg.size()))
-	{	
-		return -1;
-	}
-	return 0;
-}
-int sql_cgi::sql_insert_cgi(string info)
-{
-	string msg = "insert into student_info (name, sex, age, school) VALUES (";
-	
-	//'muhui', 'man', 22, 'sust_dx'";
 	msg+=info;
 	msg+=')';
 	if(mysql_real_query(conn, msg.c_str(),(unsigned long)msg.size()))
@@ -67,45 +86,7 @@ int sql_cgi::sql_update_cgi()
 	}
 	return 0;
 }
-//int sql_cgi::sql_select_cgi(const char *row, const char *value)
-//{
-//	char buf[1024];
-//	sprintf( buf, "select * from student_info where %s=%s", row, value);
-//	string msg=buf;
-//}
-int sql_cgi::sql_select_cgi()
-{
-	string msg = "select * from student_info";
-	MYSQL_RES *res;
-	MYSQL_ROW row;
-	MYSQL_FIELD *fd;
-	if(mysql_real_query(conn, msg.c_str(),(unsigned long) msg.size()))
-	{
-		return -1;
-	}
-	res = mysql_store_result(conn);
-	int line = mysql_num_rows(res);		// line num
-	int fields = mysql_num_fields(res);	// list num
-	fd = mysql_fetch_fields(res);
-	for(int i =0; i < fields; i++)
-	{
-		cout<<fd[i].name<<"   ";
-	}
-	cout<<endl;
-	while(row = mysql_fetch_row(res))
-	{
-		for(int i = 0; i < fields-1; i++)
-		{
-			cout<<row[i]<<"   ";
-		}
-		cout<<endl;
-	}
-	cout<<endl;
-	mysql_free_result(res);
-	return 0;
-}
 
-#if DEBUG
 int main()
 {
 	sql_cgi mycgi;
@@ -136,4 +117,44 @@ int main()
 //		cout<<"select success"<<endl;
 	return 0;
 }
-#endif
+
+#else
+int sql_cgi::sql_insert_cgi(const string& info)
+{
+	string msg = "insert into student_info (name, sex, age, school) VALUES (";
+	
+	//'muhui', 'man', 22, 'sust_dx'";
+	msg+=info;
+	msg+=')';
+	if(mysql_real_query(conn, msg.c_str(),(unsigned long)msg.size()))
+	{	
+		return -1;
+	}
+	return 0;
+}
+
+int sql_cgi::sql_delete_cgi(const string& info)
+{
+	string msg = "delete from student_info where ";
+	msg += info;
+	if(mysql_real_query(conn, msg.c_str(),(unsigned long) msg.size()))
+	{
+		return -1;
+	}
+	return 0;
+}
+
+int sql_cgi::sql_update_cgi(const string& condition, const string& info)
+{
+	string msg = "update student_info SET "; //name = 'lllzk' where id = 2";
+	msg += info;
+	msg += " where ";
+	msg += condition;
+	if(mysql_real_query(conn, msg.c_str(),(unsigned long) msg.size()))
+	{
+		return -1;
+	}
+	return 0;
+}
+
+#endif // _DEBUG

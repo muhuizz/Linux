@@ -24,7 +24,7 @@ EOF
 # sql
 SQL_LIB=$(pwd)/lib
 SQL_PATH=$(pwd)/mysql_cgi
-SQL_BIN=${SQL_PATH}/cgi_insert
+#SQL_BIN=${SQL_PATH}/cgi_select ${SQL_PATH}/cgi_insert ${SQL_PATH}/cgi_modify ${SQL_PATH}/cgi_delete
 SQL_API=${SQL_PATH}/mysql_api.cpp
 #INCLUDE=-I
 #$(export LD_LIBRARY_PATH=${SQL_LIB}/lib)
@@ -51,6 +51,7 @@ ${SERVER_NAME}:${OBJ}
 .PHONY:cgi
 cgi:
 	cd cgi-bin; make; cd -
+	cd mysql_cgi; make; cd -
 
 .PHONT:output
 output:all
@@ -62,13 +63,16 @@ output:all
 	mkdir -p output/wwwRoot/cgi/sql
 	cp ${CGI_PATH}/${MATH_BIN}	output/wwwRoot/cgi/
 	cp http_ctl.sh output/http_ctl
-	echo ${CGI_PATH}
-	cp -rf ${SQL_LIB} output/
-	cp ${SQL_BIN} output/wwwRoot/cgi/sql/
+#	cp -rf ${SQL_LIB}/lib output/
+	cp ${SQL_PATH}/cgi_select output/wwwRoot/cgi/sql/
+	cp ${SQL_PATH}/cgi_insert output/wwwRoot/cgi/sql/
+	cp ${SQL_PATH}/cgi_modify output/wwwRoot/cgi/sql/
+	cp ${SQL_PATH}/cgi_delete output/wwwRoot/cgi/sql/
 
 .PHONY:clean
 clean:
 	rm -rf ${SERVER_NAME} *.o output
 	cd ${CGI_PATH};make clean; cd -
+	cd ${SQL_PATH}; make clean; cd -
 EOF
 

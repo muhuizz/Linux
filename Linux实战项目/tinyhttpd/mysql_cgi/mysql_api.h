@@ -12,11 +12,16 @@ public:
 	sql_cgi();
 	~sql_cgi();
 	int sql_connect_cgi();
+	int sql_select_cgi();
+#ifdef _DEBUG	
 	int sql_insert_cgi();
 	int sql_delete_cgi();
 	int sql_update_cgi();
-	int sql_select_cgi();
-	int sql_insert_cgi(string info);
+#else
+	int sql_insert_cgi(const string& info);
+	int sql_delete_cgi(const string& info);
+	int sql_update_cgi(const string& condition, const string& info);
+#endif
 protected:
 	MYSQL* conn;
 };

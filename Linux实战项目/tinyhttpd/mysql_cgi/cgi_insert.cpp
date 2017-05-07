@@ -7,7 +7,6 @@
 
 void cgi_insert(char *content_data)
 {
-	cout<<"content_data"<<endl;
 	char *dat[10];
 	int index = 0;
 	char *cur = content_data;
@@ -32,14 +31,13 @@ void cgi_insert(char *content_data)
 		if(i!= index-1)
 			info+=",";
 	}
-	cout<<info<<endl;
 	sql_cgi myapi;
 	myapi.sql_connect_cgi();
-	myapi.sql_insert_cgi(info);
-
-//	printf("<html>\n");
-//
-//	printf("</html>");
+	
+	if(myapi.sql_insert_cgi(info) == 0)
+	{
+		cout<<"<html><br><h1>"<<"insert success!"<<"</h1><br></html>"<<endl;
+	}
 }
 
 int main()

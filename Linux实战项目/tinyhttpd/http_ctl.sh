@@ -5,7 +5,7 @@ BIN=${Path}/httpd
 PID=${Path}/httpd.pid
 CONF=${Path}/conf/httpd.conf
 proc=$( basename $0 )
-LIB=${Path}/lib/lib
+LIB=${Path}/lib
 function Usage(){
 	printf "%s [start(-s) | stop(-t) | restart(-rt)]\n" "$proc"
 }
@@ -19,8 +19,9 @@ function fun_start(){
 	_port=$(grep -E "^PORT:" $CONF | awk -F: '{print $2}')
 	${BIN} ${_ip} ${_port}
 	pidof $(basename $BIN) > $PID
-	echo ${LIB}
-	$(export LD_LIBRARY_PATH=${LIB})
+#	echo ${LIB}
+#	export LD_LIBRARY_PATH=${LIB}
+#	export | grep "LD"
 	printf "httpd start... pid is : $(cat ${PID}) \n"
 }
 

@@ -7,38 +7,11 @@ static void usage(const char *msg)
 	print_log("Invalid arguments", FATAL);
 }
 
-static int startup(const char *_ip, int _port)
-{
-	assert(_ip);
-	int sock = socket(AF_INET, SOCK_STREAM, 0);
-	if(sock < 0)
-	{
-		print_log("socket error", FATAL);
-		exit(2);
-	}
-	int opt = 1;
-	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
-	struct sockaddr_in local;
-	local.sin_family = AF_INET;
-	local.sin_port   = htons(_port);
-	local.sin_addr.s_addr = inet_addr(_ip);
-	if(bind(sock, (struct sockaddr*)&local, sizeof(local)) < 0)
-	{
-		print_log("bind error", FATAL);
-		exit(3);
-	}
-	if(listen(sock, 5) < 0)
-	{
-		print_log("listen error", FATAL);
-		exit(4);
-	}
-	return sock;
-}
 
 static void* fun_client(void * arg)
 {
 	assert(arg);
-	int sock = (int)arg;
+	int sock = *(int*)arg;
 	pthread_detach(pthread_self());
 	handle_client(sock);
 }
@@ -70,7 +43,7 @@ int main(int argc, char *argv[])
 		print_log(buf, NORMAL);
 
 		pthread_t pid;
-		if(pthread_create(&pid, NULL, fun_client, (void*)client) != 0)// pthread_create faild
+		if(pthread_create(&pid, NULL, fun_client, (void*)&client) != 0)// pthread_create faild
 		{
 			print_log("pthread_create error", FATAL);	
 			close(client);

@@ -1,17 +1,38 @@
-#include <stdio.h>
+#include "mysql_api.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#define SIZE 1024
-#include "mysql_api.h"
 
-void cgi_select(char *content_data)
+#define SIZE 1024
+
+void cgi_delete(char *content_data)
 {
-	sql_cgi obj;
-	obj.sql_connect_cgi();
-	printf("<html><h1>");
-	obj.sql_select_cgi();
-	printf("</h1></html>");
+	char *dat[10];
+	int index = 0;
+	char *cur = content_data;
+	while(*cur)
+	{
+		if(*cur == '=')
+		{
+			dat[index++] = cur+1;
+		}
+		else if(*cur == '&')
+		{
+			*cur = '\0';
+		}
+		cur++;
+	}
+	string info;
+	info += "name = '";
+	info += dat[0];
+	info += "'";
+	
+	sql_cgi myapi;
+	myapi.sql_connect_cgi();
+	if(myapi.sql_delete_cgi(info) == 0)
+	{
+		cout<<"<html><br><h1>"<<"delete success!"<<"</h1><br></html>"<<endl;
+	}
 }
 
 int main()
@@ -26,7 +47,6 @@ int main()
 	}
 	else
 	{
-		perror("NOT METHOD");
 		return 1;
 	}
 	if(strcasecmp(method, "GET") == 0)
@@ -37,7 +57,6 @@ int main()
 		}
 		else
 		{
-			perror("NOT QUERY_STRING");
 			return 2;
 		}
 	}
@@ -60,12 +79,11 @@ int main()
 		}
 		else
 		{
-			perror("NOT CONTENT_LENGTH");
 			return 3;
 		}
 	}
 	// data is ready
-	cgi_select(content_data); 
+	cgi_delete(content_data); 
 	return 0;
 }
 

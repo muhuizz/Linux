@@ -1,17 +1,50 @@
-#include <stdio.h>
+#include "mysql_api.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#define SIZE 1024
-#include "mysql_api.h"
 
-void cgi_select(char *content_data)
+#define SIZE 1024
+
+void cgi_modify(char *content_data)
 {
-	sql_cgi obj;
-	obj.sql_connect_cgi();
-	printf("<html><h1>");
-	obj.sql_select_cgi();
-	printf("</h1></html>");
+	char *dat[10];
+	int index = 0;
+	char *cur = content_data;
+	const char *column[3] = {"age", "school", "id"};
+	while(*cur)
+	{
+		if(*cur == '=')
+		{
+			dat[index++] = cur+1;
+		}
+		else if(*cur == '&')
+		{
+			*cur = '\0';
+		}
+		cur++;
+	}
+	string condition;
+	string info;
+	condition += "name = ";
+	condition += "'";
+	condition += dat[0];
+	condition += "'";
+
+	for(int i = 0; i < index-1; i++)
+	{
+		info+=column[i];
+		info += " = '";
+		info+=dat[i+1];
+		info += "' ";
+		if(i!= index-2)
+			info+=",";
+	}
+	sql_cgi myapi;
+	myapi.sql_connect_cgi();
+	if (myapi.sql_update_cgi(condition, info) == 0)
+	{
+		cout<<"<html><br><h1>"<<"Update success!"<<"</h1><br></html>"<<endl;
+	}
 }
 
 int main()
@@ -26,7 +59,6 @@ int main()
 	}
 	else
 	{
-		perror("NOT METHOD");
 		return 1;
 	}
 	if(strcasecmp(method, "GET") == 0)
@@ -37,7 +69,6 @@ int main()
 		}
 		else
 		{
-			perror("NOT QUERY_STRING");
 			return 2;
 		}
 	}
@@ -60,12 +91,11 @@ int main()
 		}
 		else
 		{
-			perror("NOT CONTENT_LENGTH");
 			return 3;
 		}
 	}
 	// data is ready
-	cgi_select(content_data); 
+	cgi_modify(content_data); 
 	return 0;
 }
 

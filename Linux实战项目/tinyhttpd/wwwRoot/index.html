@@ -1,18 +1,41 @@
 <html>
 	<head>	
-		<h1> This is a test file </h1>
+		<h1> Student Info Management</h1>
 	</head>
-
+	<img src="tt.png" alt="bit"> 
+	
 	<body>
-		<p> Student_Info </p>
-		<img src="tt.png" alt="bit">
+		<p> Insert Student_Info </p>
 		<form method = "GET" action = "/cgi/sql/cgi_insert">
-			num1:<input type="text", name=num1></br></br>
-			num2:<input type="text", name=num2></br></br>
-			num3:<input type="text", name=num3></br></br>
-			num4:<input type="text", name=num4></br></br>
-			<input type = "submit" value = "send"></br></br>
+			Name:<input type="text", name=num1></br></br>
+			Sex:<input type="text", name=num2></br></br>
+			Age:<input type="text", name=num3></br></br> 
+			School:<input type="text", name=num4></br></br> 
+			<input type = "submit" value = "Insert"></br></br>
+			<input type = "reset" value = "clear"></br></br>
+		</form>
 
+		<p> Delete Student_Info </p>
+		<form method = "GET" action = "/cgi/sql/cgi_delete">
+			Name:<input type="text", name=num1></br></br>
+			<input type = "submit" value = "Delete"></br></br>
+			<input type = "reset" value = "clear"></br></br>
+		</form>
+
+		<p> Search Student_Info </p>
+		<form method = "GET" action = "/cgi/sql/cgi_select">
+			<input type = "submit" value = "Search"></br></br>
+			<input type = "reset" value = "clear"></br></br>
+		</form>
+
+		<p> Modify Student_Info </p>
+		<form method = "GET" action = "/cgi/sql/cgi_modify">
+			Name:<input type="text", name=num1></br></br>
+		Modify Information <br>
+			Age:<input type="text", name=num3></br></br> 
+			School:<input type="text", name=num4></br></br> 
+			id:<input type="text", name=num4></br></br> 
+			<input type = "submit" value = "Modify"></br></br>
 			<input type = "reset" value = "clear"></br></br>
 
 		</form>

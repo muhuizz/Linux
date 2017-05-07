@@ -87,6 +87,34 @@ void echo_errno(int sock, int status)
 	}
 }
 
+int startup(const char *_ip, int _port)
+{
+	assert(_ip);
+	int sock = socket(AF_INET, SOCK_STREAM, 0);
+	if(sock < 0)
+	{
+		print_log("socket error", FATAL);
+		exit(2);
+	}
+	int opt = 1;
+	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+	struct sockaddr_in local;
+	local.sin_family = AF_INET;
+	local.sin_port   = htons(_port);
+	local.sin_addr.s_addr = inet_addr(_ip);
+	if(bind(sock, (struct sockaddr*)&local, sizeof(local)) < 0)
+	{
+		print_log("bind error", FATAL);
+		exit(3);
+	}
+	if(listen(sock, 5) < 0)
+	{
+		print_log("listen error", FATAL);
+		exit(4);
+	}
+	return sock;
+}
+
 static int GetLine(int sock, char *buf, int sz)
 {
 	int i = 0;
@@ -104,7 +132,7 @@ static int GetLine(int sock, char *buf, int sz)
 			}
 			buf[i++] = c;
 		}
-		else
+		else // recv falied, nothing in sock
 			c = '\n';
 	}
 	buf[i] = '\0';
@@ -118,7 +146,7 @@ void clear_header(int sock)
 	do
 	{
 		ret = GetLine(sock, buf, sizeof(buf));
-	}while(ret != 1 && strcmp(buf, "\n") != 0);
+	}while(ret != 1 && strcmp(buf, "\n") != 0);	// black line or nothing in sock will break
 }
 int echo_www(int sock,const char*  path, int _s)
 {
@@ -131,8 +159,10 @@ int echo_www(int sock,const char*  path, int _s)
 		echo_errno(sock, 503);
 	}
 	char buf[1024];
+	memset(buf, 0 , sizeof(buf));
 	strcpy(buf, "HTTP/1.0 200 ok\r\n");
 	send(sock, buf, strlen(buf), 0);
+	memset(buf, 0 , sizeof(buf));
 	strcpy(buf, "\r\n");
 	send(sock, buf, strlen(buf), 0);
 
@@ -160,7 +190,7 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 		do	
 		{
 			int ret = GetLine(sock, buf, sizeof(buf));
-			if(ret > 0 && (strncmp(buf, "Content-Length", 14) == 0))
+			if(ret > 0 && (strncmp(buf, "Content-Length: ", 16) == 0))
 			{
 				content_len = atoi(buf + 16);
 			}
@@ -170,6 +200,7 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 		{
 			echo_errno(sock, 400);
 			ret = 10;
+			return ret;
 		}
 	}
 
@@ -193,7 +224,7 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 		dup2(input[0],0);
 		dup2(output[1],1);
 
-		char method_env[SIZE/8];
+		char method_env[SIZE/32];
 		char query_string_env[SIZE/4];
 		char content_length_env[SIZE/8];
 		sprintf(method_env, "METHOD=%s", method);
@@ -232,12 +263,14 @@ int exec_cgi(int sock, const char* path, const char* method, const char* query_s
 		send(sock, buf, strlen(buf), 0);
 		send(sock, "\r\n", strlen("\r\n"), 0);
 
-		char ch = 0;
+		char ch = '0';
 		while(read(output[0], &ch, 1) > 0)
 		{
 			send(sock, &ch, 1, 0);
 		}
 		waitpid(id, NULL, 0);
+		close(input[1]);
+		close(output[0]);
 	}
 	return ret;
 }
@@ -350,7 +383,7 @@ int handle_client(int sock)
 	else
 	{
 		clear_header(sock);
-		ret = echo_www(sock, path, st.st_size);
+		ret = echo_www(sock, path, st.st_size); // need file size
 	}
 
 end:
