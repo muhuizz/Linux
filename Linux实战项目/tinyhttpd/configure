@@ -1,12 +1,15 @@
 #!/bin/bash
 
 PATH_ROOT=$(pwd)
-INCLUDE=$PATH_ROOT
-SRC=$(ls *.c | tr '\n' ' ')
-OBJ=$(echo ${SRC} | sed  's/\.c/\.o/g' )
+THREAD_POOL_PATH=$(pwd)/ThreadPool
+INCLUDE=-I${THREAD_POOL_PATH}
+SRC=$(ls *.cpp | tr '\n' ' ')
+OBJ=$(echo ${SRC} | sed  's/\.cpp/\.o/g' )
+POOL_SRC=$(ls ${THREAD_POOL_PATH}/*.cpp | tr '\n' ' ' | sed  's/\.cpp/\.o/g' )
+POOL_OBJ=$(echo ${POOL_SRC##*/})
 SERVER_NAME=httpd
-cc=gcc
-LIB=-lpthread
+cc=g++
+lib=-lpthread
 
 #cgi
 CGI_PATH=${PATH_ROOT}/cgi-bin
@@ -15,7 +18,7 @@ MATH_BIN=cgi_math
 
 cat << EOF > ${CGI_PATH}/Makefile
 ${MATH_BIN}:${MATH_SRC}
-	${cc} -o \$@ \$^
+	gcc -o \$@ \$^
 .PHONY:clean
 clean:
 	rm -f ${MATH_BIN}
@@ -31,17 +34,19 @@ cat << EOF > Makefile
 .PHONY:all
 all:${SERVER_NAME} cgi
 
-${SERVER_NAME}:${OBJ}
-	${cc} -o \$@ \$^ ${LIB}
-%.o:%.c
-	${cc} -c \$<
+${SERVER_NAME}:${OBJ} ${POOL_OBJ}
+	${cc} -o \$@ \$^ ${lib}
+%.o:${ROOT_PATH}/%.cpp
+	${cc} -c \$< ${INCLUDE}
+%.o:${THREAD_POOL_PATH}/%.cpp
+	${cc} -c \$< 
 	
 .PHONY:cgi
 cgi:
 	cd cgi-bin; make; cd -
 	cd mysql_cgi; make; cd -
 
-.PHONT:output
+.PHONY:output
 output:all
 	mkdir output
 	cp ${SERVER_NAME} output/
